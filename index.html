@@ -3,1297 +3,196 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <meta
-        name="description"
-        content="Innovation has a story. Explore how ideas, people, technology, challenges, and opportunities shape innovation."
-    >
-
-    <title>Innovation Is a Story</title>
-
+    <meta name="description" content="Civil Engineering: Shaping infrastructure for common benefit and sustainable progress.">
+    <title>Civil Engineering: Sustainable Progress</title>
     <style>
-        /* =========================================================
-           RESET & BASE
-        ========================================================= */
-
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: 80px;
-        }
-
+        /* Modern Typography & Fluid Layout */
         body {
-            margin: 0;
-            font-family:
-                Inter,
-                ui-sans-serif,
-                system-ui,
-                -apple-system,
-                BlinkMacSystemFont,
-                "Segoe UI",
-                sans-serif;
-            color: #172033;
-            background: #ffffff;
-            line-height: 1.6;
-        }
-
-        img {
-            display: block;
-            max-width: 100%;
-            height: auto;
-        }
-
-        a {
-            color: inherit;
-        }
-
-        button,
-        a {
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        :focus-visible {
-            outline: 3px solid #f4b942;
-            outline-offset: 4px;
-        }
-
-        /* =========================================================
-           ACCESSIBILITY
-        ========================================================= */
-
-        .skip-link {
-            position: absolute;
-            top: -100px;
-            left: 1rem;
-            z-index: 999;
-            padding: 0.75rem 1rem;
-            background: #172033;
-            color: #ffffff;
-            text-decoration: none;
-            font-weight: 700;
-            border-radius: 0 0 8px 8px;
-        }
-
-        .skip-link:focus {
-            top: 0;
-        }
-
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border: 0;
-        }
-
-        /* =========================================================
-           DESIGN TOKENS
-        ========================================================= */
-
-        :root {
-            --ink: #172033;
-            --muted: #5f6b7a;
-            --surface: #f5f7fa;
-            --surface-dark: #172033;
-            --accent: #f4b942;
-            --accent-dark: #b87500;
-            --line: #dfe4ea;
-            --white: #ffffff;
-
-            --max-width: 1180px;
-            --radius: 18px;
-            --shadow: 0 16px 40px rgba(23, 32, 51, 0.08);
-        }
-
-        .container {
-            width: min(var(--max-width), calc(100% - 2rem));
-            margin-inline: auto;
-        }
-
-        /* =========================================================
-           HEADER
-        ========================================================= */
-
-        .site-header {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: rgba(255, 255, 255, 0.96);
-            border-bottom: 1px solid var(--line);
-            backdrop-filter: blur(12px);
-        }
-
-        .nav {
-            min-height: 72px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 2rem;
-        }
-
-        .brand {
-            font-weight: 800;
-            font-size: 1.05rem;
-            text-decoration: none;
-            letter-spacing: -0.02em;
-            white-space: nowrap;
-        }
-
-        .brand span {
-            color: var(--accent-dark);
-        }
-
-        .nav-list {
-            display: flex;
-            align-items: center;
-            gap: 1.4rem;
-            list-style: none;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.75;
+            color: #2d3748;
+            background-color: #f7fafc;
             margin: 0;
             padding: 0;
         }
 
-        .nav-list a {
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 650;
-            color: #465162;
+        .main-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 40px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
         }
 
-        .nav-list a:hover {
-            color: var(--ink);
-        }
-
-        /* =========================================================
-           HERO
-        ========================================================= */
-
-        .hero {
-            background:
-                linear-gradient(
-                    135deg,
-                    #f7f8fa 0%,
-                    #ffffff 55%,
-                    #fff8e9 100%
-                );
-            padding: clamp(4rem, 9vw, 7rem) 0;
-        }
-
-        .hero-grid {
-            display: grid;
-            grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-            align-items: center;
-            gap: clamp(2rem, 5vw, 5rem);
-        }
-
-        .eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin: 0 0 1rem;
-            color: var(--accent-dark);
-            font-size: 0.8rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-        }
-
-        .eyebrow::before {
-            content: "";
-            width: 28px;
-            height: 3px;
-            background: var(--accent);
-        }
-
-        h1,
-        h2,
-        h3 {
-            margin-top: 0;
-            color: var(--ink);
-            line-height: 1.1;
-            letter-spacing: -0.035em;
+        /* Clean Academic Header Style */
+        header {
+            border-bottom: 3px solid #3182ce;
+            padding-bottom: 20px;
+            margin-bottom: 35px;
         }
 
         h1 {
-            max-width: 760px;
-            margin-bottom: 1.4rem;
-            font-size: clamp(3rem, 7vw, 5.7rem);
+            font-size: 2.25rem;
+            color: #1a202c;
+            line-height: 1.2;
+            margin: 0 0 15px 0;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+        }
+
+        .meta-data {
+            color: #718096;
+            font-size: 0.95rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .meta-item {
+            background-color: #edf2f7;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-weight: 500;
         }
 
         h2 {
-            font-size: clamp(2rem, 4vw, 3.3rem);
-            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            color: #2b6cb0;
+            margin-top: 40px;
+            border-left: 4px solid #3182ce;
+            padding-left: 12px;
         }
 
-        h3 {
-            font-size: 1.25rem;
-            margin-bottom: 0.7rem;
+        p {
+            margin-bottom: 22px;
+            text-align: justify;
         }
 
-        .hero-copy {
-            max-width: 650px;
-            font-size: clamp(1.05rem, 2vw, 1.3rem);
-            color: var(--muted);
+        /* Standalone Original Interactive Component Section */
+        .interactive-showcase {
+            background-color: #ebf8ff;
+            border: 1px solid #bee3f8;
+            border-radius: 6px;
+            padding: 25px;
+            margin: 35px 0;
         }
 
-        .hero-actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-            margin-top: 2rem;
-        }
-
-        .button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 48px;
-            padding: 0.8rem 1.2rem;
-            border-radius: 999px;
-            text-decoration: none;
-            font-weight: 750;
-            border: 2px solid transparent;
-            transition:
-                transform 160ms ease,
-                background 160ms ease,
-                color 160ms ease;
-        }
-
-        .button:hover {
-            transform: translateY(-2px);
-        }
-
-        .button-primary {
-            background: var(--ink);
-            color: var(--white);
-        }
-
-        .button-primary:hover {
-            background: #28344a;
-        }
-
-        .button-secondary {
-            background: transparent;
-            color: var(--ink);
-            border-color: #aeb7c4;
-        }
-
-        .button-secondary:hover {
-            background: var(--white);
-        }
-
-        .hero-image {
-            position: relative;
-        }
-
-        .hero-image img {
-            width: 100%;
-            aspect-ratio: 4 / 3;
-            object-fit: cover;
-            border-radius: 24px;
-            box-shadow: var(--shadow);
-        }
-
-        .image-label {
-            position: absolute;
-            right: -1rem;
-            bottom: -1rem;
-            max-width: 230px;
-            padding: 1rem 1.1rem;
-            background: var(--ink);
-            color: var(--white);
-            border-radius: 14px;
-            font-size: 0.9rem;
-            box-shadow: var(--shadow);
-        }
-
-        /* =========================================================
-           INTRO / BIG IDEA
-        ========================================================= */
-
-        .section {
-            padding: clamp(4rem, 8vw, 7rem) 0;
-        }
-
-        .section-heading {
-            max-width: 720px;
-            margin-bottom: 3rem;
-        }
-
-        .section-heading p {
-            margin: 0;
-            color: var(--muted);
-            font-size: 1.08rem;
-        }
-
-        .intro-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            align-items: stretch;
-        }
-
-        .statement {
-            padding: clamp(2rem, 4vw, 3.5rem);
-            background: var(--ink);
-            color: var(--white);
-            border-radius: var(--radius);
-        }
-
-        .statement h2 {
-            color: var(--white);
-        }
-
-        .statement p {
-            margin: 0;
-            color: #dce2eb;
-            font-size: 1.1rem;
-        }
-
-        .intro-text {
-            padding: 1rem 0;
-        }
-
-        .intro-text p {
+        .interactive-showcase h3 {
             margin-top: 0;
-            color: var(--muted);
-            font-size: 1.05rem;
+            color: #2b6cb0;
         }
 
-        /* =========================================================
-           JOURNEY
-        ========================================================= */
-
-        .journey {
-            background: var(--surface);
-        }
-
-        .journey-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 1rem;
-        }
-
-        .journey-card {
-            position: relative;
-            min-height: 260px;
-            padding: 1.5rem;
-            background: var(--white);
-            border: 1px solid var(--line);
-            border-radius: var(--radius);
-        }
-
-        .journey-number {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 42px;
-            height: 42px;
-            margin-bottom: 1.4rem;
-            border-radius: 50%;
-            background: #fff2cd;
-            color: #8a5a00;
-            font-weight: 850;
-        }
-
-        .journey-card p {
-            margin: 0;
-            color: var(--muted);
-            font-size: 0.95rem;
-        }
-
-        /* =========================================================
-           BIG QUOTE / STATEMENT
-        ========================================================= */
-
-        .quote-section {
-            padding: clamp(4rem, 8vw, 6rem) 0;
-            text-align: center;
-        }
-
-        blockquote {
-            max-width: 850px;
-            margin: 0 auto;
-        }
-
-        blockquote p {
-            margin: 0;
-            color: var(--ink);
-            font-size: clamp(2rem, 5vw, 4rem);
-            font-weight: 800;
-            line-height: 1.08;
-            letter-spacing: -0.04em;
-        }
-
-        blockquote p span {
-            color: var(--accent-dark);
-        }
-
-        /* =========================================================
-           PEOPLE
-        ========================================================= */
-
-        .people-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-        }
-
-        .person-card {
-            padding: 1.5rem;
-            border: 1px solid var(--line);
-            border-radius: var(--radius);
-            background: var(--white);
-        }
-
-        .person-card:nth-child(4),
-        .person-card:nth-child(5),
-        .person-card:nth-child(6) {
-            background: var(--surface);
-        }
-
-        .person-role {
-            display: block;
-            margin-bottom: 0.8rem;
-            color: var(--accent-dark);
-            font-size: 0.75rem;
-            font-weight: 850;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        .person-card p {
-            margin: 0;
-            color: var(--muted);
-        }
-
-        /* =========================================================
-           PHILIPPINE STARTUPS
-        ========================================================= */
-
-        .philippines {
-            background: #fff8e9;
-        }
-
-        .philippines-grid {
-            display: grid;
-            grid-template-columns: 0.9fr 1.1fr;
-            gap: clamp(2rem, 5vw, 5rem);
-            align-items: center;
-        }
-
-        .philippines-image img {
-            width: 100%;
-            aspect-ratio: 4 / 3;
-            object-fit: cover;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-        }
-
-        .philippines-copy p {
-            color: var(--muted);
-            font-size: 1.05rem;
-        }
-
-        .pill-list {
+        .btn-grid {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.55rem;
-            margin: 1.5rem 0 0;
-            padding: 0;
-            list-style: none;
+            gap: 10px;
+            margin-bottom: 20px;
         }
 
-        .pill-list li {
-            padding: 0.45rem 0.75rem;
-            background: var(--white);
-            border: 1px solid #e5d8b8;
-            border-radius: 999px;
-            font-size: 0.85rem;
-            font-weight: 700;
+        .discipline-btn {
+            background-color: #ffffff;
+            border: 1px solid #90cdf4;
+            color: #2b6cb0;
+            padding: 8px 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s ease;
         }
 
-        /* =========================================================
-           WHY IT MATTERS
-        ========================================================= */
-
-        .why-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
+        .discipline-btn:hover {
+            background-color: #ebf8ff;
+            transform: translateY(-1px);
         }
 
-        .why-card {
-            padding: 1.75rem;
-            background: var(--surface);
-            border-radius: var(--radius);
-        }
-
-        .why-card p {
-            margin-bottom: 0;
-            color: var(--muted);
-        }
-
-        /* =========================================================
-           AUDIENCE / CTA
-        ========================================================= */
-
-        .audience {
-            background: var(--surface);
-        }
-
-        .audience-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .audience-list {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 0.7rem;
-            margin: 0;
-            padding: 0;
-            list-style: none;
-        }
-
-        .audience-list li {
-            padding: 0.9rem 1rem;
-            background: var(--white);
-            border: 1px solid var(--line);
-            border-radius: 10px;
-            font-weight: 700;
-        }
-
-        .cta {
-            padding: clamp(2rem, 5vw, 4rem);
-            background: var(--ink);
-            color: var(--white);
-            border-radius: 24px;
-            text-align: center;
-        }
-
-        .cta h2 {
-            color: var(--white);
-        }
-
-        .cta p {
-            max-width: 620px;
-            margin: 0 auto 1.5rem;
-            color: #dce2eb;
-        }
-
-        .cta .button-primary {
-            background: var(--accent);
-            color: #241b08;
-        }
-
-        .cta .button-primary:hover {
-            background: #ffd16c;
-        }
-
-        /* =========================================================
-           FOOTER
-        ========================================================= */
-
-        footer {
-            padding: 2rem 0;
-            background: #0e1522;
-            color: #aeb7c4;
-        }
-
-        .footer-grid {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-        }
-
-        footer a {
+        .discipline-btn.active {
+            background-color: #3182ce;
             color: #ffffff;
+            border-color: #3182ce;
         }
 
-        footer p {
-            margin: 0;
+        .display-panel {
+            background-color: #ffffff;
+            padding: 15px 20px;
+            border-radius: 4px;
+            border-line: 1px solid #e2e8f0;
+            min-height: 80px;
+            font-style: italic;
+            color: #4a5568;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        /* References Block Styling */
+        .reference-list {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
             font-size: 0.9rem;
+            color: #4a5568;
         }
 
-        /* =========================================================
-           RESPONSIVE
-        ========================================================= */
-
-        @media (max-width: 1000px) {
-            .journey-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-            .hero-grid,
-            .philippines-grid {
-                grid-template-columns: 1fr 1fr;
-            }
+        .reference-item {
+            margin-bottom: 15px;
+            padding-left: 20px;
+            text-indent: -20px;
         }
 
-        @media (max-width: 800px) {
-            .nav {
-                min-height: auto;
-                padding: 1rem 0;
-                align-items: flex-start;
-                flex-direction: column;
-                gap: 0.8rem;
-            }
-
-            .nav-list {
-                width: 100%;
-                overflow-x: auto;
-                padding-bottom: 0.25rem;
-            }
-
-            .hero-grid,
-            .intro-grid,
-            .philippines-grid,
-            .audience-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .hero {
-                padding-top: 3.5rem;
-            }
-
-            .hero-image {
-                order: -1;
-            }
-
-            .journey-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .people-grid,
-            .why-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .image-label {
-                right: 1rem;
-            }
+        .reference-item a {
+            color: #3182ce;
+            text-decoration: none;
         }
 
-        @media (max-width: 560px) {
-            .container {
-                width: min(var(--max-width), calc(100% - 1.25rem));
-            }
-
-            h1 {
-                font-size: clamp(2.6rem, 14vw, 4rem);
-            }
-
-            .hero-actions {
-                flex-direction: column;
-            }
-
-            .button {
-                width: 100%;
-            }
-
-            .journey-grid,
-            .people-grid,
-            .why-grid,
-            .audience-list {
-                grid-template-columns: 1fr;
-            }
-
-            .journey-card {
-                min-height: auto;
-            }
-
-            .image-label {
-                position: static;
-                margin-top: 0.75rem;
-                max-width: none;
-            }
-
-            .footer-grid {
-                align-items: flex-start;
-                flex-direction: column;
-            }
-        }
-
-        /* =========================================================
-           REDUCED MOTION
-        ========================================================= */
-
-        @media (prefers-reduced-motion: reduce) {
-            html {
-                scroll-behavior: auto;
-            }
-
-            *,
-            *::before,
-            *::after {
-                transition: none !important;
-            }
+        .reference-item a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
-
 <body>
 
-    <a class="skip-link" href="#main-content">
-        Skip to main content
-    </a>
-
-    <!-- =========================================================
-         HEADER
-    ========================================================== -->
-
-    <header class="site-header">
-        <div class="container nav">
-
-            <a class="brand" href="#">
-                Innovation <span>is a Story</span>
-            </a>
-
-            <nav aria-label="Primary navigation">
-                <ul class="nav-list">
-                    <li><a href="#story">The Story</a></li>
-                    <li><a href="#journey">The Journey</a></li>
-                    <li><a href="#people">The People</a></li>
-                    <li><a href="#philippines">Philippine Startups</a></li>
-                    <li><a href="#research">Why It Matters</a></li>
-                </ul>
-            </nav>
-
-        </div>
-    </header>
-
-
-    <main id="main-content">
-
-        <!-- =====================================================
-             HERO
-        ====================================================== -->
-
-        <section class="hero" aria-labelledby="hero-title">
-
-            <div class="container hero-grid">
-
-                <div>
-                    <p class="eyebrow">Innovation • People • Stories</p>
-
-                    <h1 id="hero-title">
-                        Every startup begins with a story.
-                    </h1>
-
-                    <p class="hero-copy">
-                        Behind every app, platform, or breakthrough is a
-                        story about a problem, an idea, and the people
-                        trying to make something new happen.
-                    </p>
-
-                    <div class="hero-actions">
-                        <a class="button button-primary" href="#story">
-                            Explore the story
-                        </a>
-
-                        <a class="button button-secondary" href="#journey">
-                            See how innovation evolves
-                        </a>
-                    </div>
-                </div>
-
-                <div class="hero-image">
-                    <img
-                        src="assets/hero-image.webp"
-                        alt="People gathered in a startup innovation workshop"
-                        width="1000"
-                        height="750"
-                    >
-
-                    <div class="image-label">
-                        Innovation brings together people, ideas,
-                        technology, and opportunities.
-                    </div>
-                </div>
-
+    <div class="main-container">
+        <header>
+            <h1>Civil Engineering: Shaping Infrastructure for Common Benefit and Sustainable Progress</h1>
+            <div class="meta-data">
+                <span class="meta-item"><strong>Author:</strong> Liebe Jullieanne Macario</span>
+                <span class="meta-item"><strong>ID:</strong> CE-2023107319</span>
+                <span class="meta-item"><strong>Date:</strong> November 20, 2023</span>
+                <span class="meta-item">Homework No. 1</span>
             </div>
+        </header>
 
-        </section>
+        <main>
+            <p>Layout, making, and upkeep of infrastructure projects, including those involving roads, bridges, buildings, airports, water supply systems, and more, fall within the purview of civil engineering. The word "civil" describes these enterprises' intention to further the common benefit. Our physical surroundings are shaped by the vital profession of civil engineering. In order to serve communities and advance societal development, it calls for a blend of technical proficiency, inventiveness, and a dedication to enhancing infrastructure. It also provides a variety of options for specialization.</p>
 
+            <p>The application of scientific and engineering concepts by civil engineers guarantees that these projects are not only safe and functional, but also ecologically beneficial and sustainable. One factor justifies the significance of civil engineering: it makes the world a safer and easier place to live. Without civil engineering, many facets of human society would not be conceivable, such as construction. Planning and executing projects, moving materials, and developing sites using hydraulic, environmental, structural, and geotechnical engineering are all part of civil engineering.</p>
 
-        <!-- =====================================================
-             BIG IDEA
-        ====================================================== -->
+            <p>In addition to providing a wide range of specialization options, civil engineering calls for a blend of technical proficiency, ingenuity, and a dedication to enhancing infrastructure in order to serve communities and advance society. Ensuring the safety, efficiency, and sustainability of the infrastructure we depend on is a critical responsibility of civil engineers.</p>
 
-        <section class="section" id="story" aria-labelledby="story-title">
+            <h2>Professional Profile and Practice</h2>
+            <p>An expert in the planning, building, and upkeep of diverse infrastructure projects and systems is known as a civil engineer. Planning, analyzing, and supervising the construction of buildings, bridges, highways, dams, airports, and water supply systems are among the constructions they manage. Civil engineers make ensuring that projects are safe, ecologically friendly, practical, and sustainable by using scientific and engineering concepts.</p>
 
-            <div class="container">
+            <p>They are essential to the project at every level, overseeing construction, producing comprehensive drawings, conducting feasibility studies, and making sure regulations are followed. They also require fundamental knowledge in geotechnical engineering, materials science, structural mechanics, and other related fields. Urban planners, construction teams, and architects work together with civil engineers. They are experts in geotechnical engineering, materials science, structural mechanics, and related fields. Decision-making and problem-solving abilities are essential as they tackle difficult problems and come up with creative solutions while taking the cost, safety, and environmental effects into account.</p>
 
-                <div class="section-heading">
-                    <p class="eyebrow">The big idea</p>
-
-                    <h2 id="story-title">
-                        Innovation is more than the finished product.
-                    </h2>
+            <!-- Original Custom Interactive Feature -->
+            <section class="interactive-showcase">
+                <h3>Interactive Discipline Explorer</h3>
+                <p>Click any core civil engineering discipline branch discussed in the paper below to reveal its professional scope instantly:</p>
+                
+                <div class="btn-grid">
+                    <button class="discipline-btn" onclick="showDiscipline('construction', this)">Construction Engineering</button>
+                    <button class="discipline-btn" onclick="showDiscipline('structural', this)">Structural Engineering</button>
+                    <button class="discipline-btn" onclick="showDiscipline('geotechnical', this)">Geotechnical Engineering</button>
+                    <button class="discipline-btn" onclick="showDiscipline('transportation', this)">Transportation Engineering</button>
+                    <button class="discipline-btn" onclick="showDiscipline('environmental', this)">Environmental Engineering</button>
+                    <button class="discipline-btn" onclick="showDiscipline('water', this)">Water Resources Engineering</button>
+                    <button class="discipline-btn" onclick="showDiscipline('coastal', this)">Coastal Engineering</button>
                 </div>
 
-                <div class="intro-grid">
-
-                    <div class="statement">
-                        <h2>
-                            What happens before the launch?
-                        </h2>
-
-                        <p>
-                            Innovation develops through conversations,
-                            decisions, experiments, challenges,
-                            relationships, and opportunities.
-                        </p>
-                    </div>
-
-                    <div class="intro-text">
-                        <p>
-                            We often think of innovation as an app,
-                            device, platform, or new technology.
-                            But products do not simply appear.
-                        </p>
-
-                        <p>
-                            An idea changes as people test it,
-                            question it, build it, use it, and respond
-                            to the problems they encounter along the way.
-                        </p>
-
-                        <p>
-                            In other words, innovation has a story.
-                        </p>
-                    </div>
-
+                <div id="discipline-text" class="display-panel">
+                    Click a specialization button above to load raw data definitions dynamically.
                 </div>
+            </section>
 
-            </div>
+            <h2>Historical Roots</h2>
+            <p>When people began to give up their nomadic lifestyles and build shelters, the earliest known applications of civil engineering may have begun in ancient Egypt, the Indus Valley civilization, and Mesopotamia (ancient Iraq) between 4000 and 2000 BC. Engineers have worked in peaceful fields from the beginning of time, and several examples of ancient and medieval civil engineering projects demonstrate a history of creative ingenuity and relentless experimentation.</p>
 
-        </section>
-
-
-        <!-- =====================================================
-             JOURNEY
-        ====================================================== -->
-
-        <section class="section journey" id="journey"
-                 aria-labelledby="journey-title">
-
-            <div class="container">
-
-                <div class="section-heading">
-                    <p class="eyebrow">The journey</p>
-
-                    <h2 id="journey-title">
-                        How an innovation takes shape
-                    </h2>
-
-                    <p>
-                        Innovation rarely follows a straight line.
-                        It develops through action, feedback, and change.
-                    </p>
-                </div>
-
-                <div class="journey-grid">
-
-                    <article class="journey-card">
-                        <span class="journey-number">01</span>
-
-                        <h3>Something needs to change</h3>
-
-                        <p>
-                            Someone encounters a problem, challenge,
-                            or opportunity.
-                        </p>
-                    </article>
-
-                    <article class="journey-card">
-                        <span class="journey-number">02</span>
-
-                        <h3>An idea becomes possible</h3>
-
-                        <p>
-                            Someone asks, “What if there is a better way?”
-                        </p>
-                    </article>
-
-                    <article class="journey-card">
-                        <span class="journey-number">03</span>
-
-                        <h3>People come together</h3>
-
-                        <p>
-                            Founders, builders, mentors, partners,
-                            investors, and users become involved.
-                        </p>
-                    </article>
-
-                    <article class="journey-card">
-                        <span class="journey-number">04</span>
-
-                        <h3>Problems push back</h3>
-
-                        <p>
-                            Resources, technology, regulations,
-                            competition, and uncertainty create
-                            new challenges.
-                        </p>
-                    </article>
-
-                    <article class="journey-card">
-                        <span class="journey-number">05</span>
-
-                        <h3>The innovation changes</h3>
-
-                        <p>
-                            Ideas are revised, products improve,
-                            and new people become part of the story.
-                        </p>
-                    </article>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =====================================================
-             QUOTE
-        ====================================================== -->
-
-        <section class="quote-section" aria-label="Key idea">
-
-            <div class="container">
-
-                <blockquote>
-                    <p>
-                        Innovation does not move in a straight line.
-                        <span>It evolves.</span>
-                    </p>
-                </blockquote>
-
-            </div>
-
-        </section>
-
-
-        <!-- =====================================================
-             PEOPLE
-        ====================================================== -->
-
-        <section class="section" id="people"
-                 aria-labelledby="people-title">
-
-            <div class="container">
-
-                <div class="section-heading">
-                    <p class="eyebrow">The people</p>
-
-                    <h2 id="people-title">
-                        Innovation is never a solo story.
-                    </h2>
-
-                    <p>
-                        Different people—and the systems around them—
-                        can influence what an innovation eventually becomes.
-                    </p>
-                </div>
-
-                <div class="people-grid">
-
-                    <article class="person-card">
-                        <span class="person-role">The visionary</span>
-                        <h3>Sees possibility</h3>
-                        <p>
-                            Spots a problem and imagines something different.
-                        </p>
-                    </article>
-
-                    <article class="person-card">
-                        <span class="person-role">The builder</span>
-                        <h3>Turns ideas into reality</h3>
-                        <p>
-                            Helps transform ideas into products,
-                            services, or technology.
-                        </p>
-                    </article>
-
-                    <article class="person-card">
-                        <span class="person-role">The helper</span>
-                        <h3>Creates opportunity</h3>
-                        <p>
-                            Provides knowledge, resources, support,
-                            or connections.
-                        </p>
-                    </article>
-
-                    <article class="person-card">
-                        <span class="person-role">The user</span>
-                        <h3>Shapes the experience</h3>
-                        <p>
-                            Influences innovation through feedback,
-                            experience, and use.
-                        </p>
-                    </article>
-
-                    <article class="person-card">
-                        <span class="person-role">The opponent</span>
-                        <h3>Creates friction</h3>
-                        <p>
-                            Represents obstacles and challenges
-                            that must be addressed.
-                        </p>
-                    </article>
-
-                    <article class="person-card">
-                        <span class="person-role">The system</span>
-                        <h3>Sets the conditions</h3>
-                        <p>
-                            Includes technology, infrastructure,
-                            regulations, and other forces.
-                        </p>
-                    </article>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =====================================================
-             PHILIPPINE CONTEXT
-        ====================================================== -->
-
-        <section class="section philippines"
-                 id="philippines"
-                 aria-labelledby="philippines-title">
-
-            <div class="container philippines-grid">
-
-                <div class="philippines-image">
-
-                    <img
-                        src="assets/supporting-image-1.webp"
-                        alt="A collaborative workspace used for startup and innovation activities"
-                        width="1000"
-                        height="750"
-                        loading="lazy"
-                    >
-
-                </div>
-
-                <div class="philippines-copy">
-
-                    <p class="eyebrow">The Philippine startup story</p>
-
-                    <h2 id="philippines-title">
-                        Innovation is shaped by where it happens.
-                    </h2>
-
-                    <p>
-                        Philippine startups are shaped by local
-                        experiences, communities, technologies,
-                        infrastructure, opportunities, and challenges.
-                    </p>
-
-                    <p>
-                        Sometimes an innovation begins with something
-                        surprisingly ordinary: a problem someone
-                        experiences in everyday life.
-                    </p>
-
-                    <p>
-                        That experience can become an idea—and that idea
-                        can grow through technology, partnerships,
-                        users, and the people who help bring it to life.
-                    </p>
-
-                    <ul class="pill-list"
-                        aria-label="Factors that influence innovation">
-
-                        <li>Local experience</li>
-                        <li>Community</li>
-                        <li>Technology</li>
-                        <li>Infrastructure</li>
-                        <li>Partnerships</li>
-                        <li>Users</li>
-
-                    </ul>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =====================================================
-             WHY IT MATTERS
-        ====================================================== -->
-
-        <section class="section"
-                 id="research"
-                 aria-labelledby="research-title">
-
-            <div class="container">
-
-                <div class="section-heading">
-
-                    <p class="eyebrow">Why it matters</p>
-
-                    <h2 id="research-title">
-                        Look beyond the product.
-                    </h2>
-
-                    <p>
-                        Stories reveal the relationships and interactions
-                        that are often hidden behind successful innovations.
-                    </p>
-
-                </div>
-
-                <div class="why-grid">
-
-                    <article class="why-card">
-                        <h3>Ideas change</h3>
-                        <p>
-                            Conversations and feedback can transform
-                            what people originally imagined.
-                        </p>
-                    </article>
-
-                    <article class="why-card">
-                        <h3>Contexts change</h3>
-                        <p>
-                            Real users reveal problems, opportunities,
-                            and possibilities.
-                        </p>
-                    </article>
-
-                    <article class="why-card">
-                        <h3>Systems change</h3>
-                        <p>
-                            New technologies, people, and challenges
-                            can reshape entire organizations.
-                        </p>
-                    </article>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =====================================================
-             YOU ARE PART OF THE STORY
-        ====================================================== -->
-
-        <section class="section audience"
-                 aria-labelledby="audience-title">
-
-            <div class="container audience-grid">
-
-                <div>
-
-                    <p class="eyebrow">Your role</p>
-
-                    <h2 id="audience-title">
-                        You may already be part of the story.
-                    </h2>
-
-                    <p>
-                        You do not have to be a startup founder to
-                        influence innovation.
-                    </p>
-
-                    <ul class="audience-list">
-
-                        <li>Student</li>
-                        <li>Developer</li>
-                        <li>Designer</li>
-                        <li>User</li>
-                        <li>Entrepreneur</li>
-                        <li>Investor</li>
-                        <li>Researcher</li>
-                        <li>Policymaker</li>
-
-                    </ul>
-
-                </div>
-
-                <div class="cta">
-
-                    <h2>
-                        What story are you trying to build?
-                    </h2>
-
-                    <p>
-                        Every innovation starts somewhere—with a problem,
-                        a question, an experience, or an idea that
-                        something could be different.
-                    </p>
-
-                    <a
-                        class="button button-primary"
-                        href="https://www.upou.edu.ph/feature/beyond-stories-how-narratives-shape-innovation-in-philippine-tech-startups/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Deep dive
-                    </a>
-
-                </div>
-
-            </div>
-
-        </section>
-
-    </main>
-
-
-    <!-- =========================================================
-         FOOTER
-    ========================================================== -->
-
-    <footer>
-
-        <div class="container footer-grid">
-
-            <p>
-                <strong>Innovation Has a Story</strong>
-            </p>
-
-            <p>
-                A closer look at the people, ideas, and forces behind innovation.
-            </p>
-
-            <p>
-                <a
-                    href="https://startablehub.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Startable Innovation Hub
-                </a>
-            </p>
-
-        </div>
-
-    </footer>
-
-</body>
-</html>
