@@ -14,26 +14,29 @@
       --text: #c9d1d9;
       --text-bold: #f0f6fc;
       --text-muted: #8b949e;
+      --code-bg: #010409;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background-color: var(--bg);
       color: var(--text);
-      line-height: 1.6;
+      line-height: 1.8;
     }
 
     /* Top Metadata Header */
     header {
       background: var(--card-bg);
       border-bottom: 1px solid var(--border);
-      padding: 2.5rem 2rem 1.5rem;
+      padding: 3rem 2rem 2rem;
     }
 
     .header-container {
-      max-width: 960px;
+      max-width: 900px;
       margin: 0 auto;
     }
 
@@ -50,19 +53,21 @@
     }
 
     h1 {
-      font-size: 2.4rem;
+      font-size: 2.6rem;
       color: var(--text-bold);
       margin-bottom: 0.5rem;
+      line-height: 1.25;
     }
 
     .subtitle {
       color: var(--text-muted);
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       margin-bottom: 1.5rem;
     }
 
     .author-bar {
       display: flex;
+      flex-wrap: wrap;
       gap: 2rem;
       font-size: 0.85rem;
       color: var(--text-muted);
@@ -76,18 +81,19 @@
     nav {
       position: sticky;
       top: 0;
-      background: rgba(13, 17, 23, 0.9);
+      background: rgba(13, 17, 23, 0.95);
       backdrop-filter: blur(8px);
       border-bottom: 1px solid var(--border);
-      z-index: 10;
+      z-index: 100;
     }
 
     .nav-container {
-      max-width: 960px;
+      max-width: 900px;
       margin: 0 auto;
       display: flex;
       gap: 1.5rem;
       padding: 0.8rem 2rem;
+      overflow-x: auto;
     }
 
     .nav-container a {
@@ -95,6 +101,7 @@
       text-decoration: none;
       font-size: 0.9rem;
       font-weight: 500;
+      white-space: nowrap;
       transition: color 0.2s;
     }
 
@@ -102,8 +109,8 @@
 
     /* Page Layout */
     main {
-      max-width: 960px;
-      margin: 2rem auto 4rem;
+      max-width: 900px;
+      margin: 2.5rem auto 4rem;
       padding: 0 2rem;
     }
 
@@ -111,16 +118,37 @@
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: 8px;
-      padding: 2rem;
-      margin-bottom: 2rem;
+      padding: 2.5rem;
+      margin-bottom: 2.5rem;
     }
 
     .section-card h2 {
-      font-size: 1.4rem;
+      font-size: 1.6rem;
       color: var(--text-bold);
-      margin-bottom: 1rem;
+      margin-bottom: 1.2rem;
       border-bottom: 1px solid var(--border);
-      padding-bottom: 0.5rem;
+      padding-bottom: 0.6rem;
+    }
+
+    .section-card h3 {
+      font-size: 1.2rem;
+      color: var(--accent);
+      margin: 1.5rem 0 0.8rem;
+    }
+
+    .section-card p {
+      margin-bottom: 1.2rem;
+      color: var(--text);
+    }
+
+    /* Callout Box */
+    .callout {
+      background: rgba(88, 166, 255, 0.08);
+      border-left: 4px solid var(--accent);
+      padding: 1.2rem;
+      border-radius: 0 6px 6px 0;
+      margin: 1.5rem 0;
+      font-size: 0.95rem;
     }
 
     /* Interactive Demo Section */
@@ -135,7 +163,7 @@
       align-items: center;
       gap: 1rem;
       margin: 1.5rem 0;
-      padding: 1.5rem;
+      padding: 2rem;
       background: var(--bg);
       border: 1px solid var(--border);
       border-radius: 6px;
@@ -145,45 +173,86 @@
       background: var(--accent-purple);
       color: #0d1117;
       border: none;
-      padding: 0.75rem 1.5rem;
+      padding: 0.85rem 1.8rem;
       font-weight: 700;
+      font-size: 0.95rem;
       border-radius: 6px;
       cursor: pointer;
-      transition: opacity 0.2s;
+      transition: opacity 0.2s, transform 0.1s;
     }
 
     .btn-action:hover { opacity: 0.9; }
+    .btn-action:active { transform: scale(0.98); }
 
     .score-display {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       font-weight: 700;
       color: var(--text-bold);
     }
 
-    /* Data Highlights */
+    /* Data Highlights & Code Blocks */
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1rem;
-      margin-top: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.2rem;
+      margin: 1.5rem 0;
     }
 
     .grid-item {
       background: var(--bg);
       border: 1px solid var(--border);
-      padding: 1rem;
+      padding: 1.2rem;
       border-radius: 6px;
     }
 
-    .grid-item h3 {
+    .grid-item h4 {
       font-size: 1rem;
       color: var(--accent);
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .grid-item p {
+      font-size: 0.9rem;
+      margin-bottom: 0;
+      color: var(--text-muted);
+    }
+
+    code-block {
+      display: block;
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      padding: 1.2rem;
+      border-radius: 6px;
+      font-family: monospace;
+      font-size: 0.85rem;
+      color: var(--accent-purple);
+      overflow-x: auto;
+      margin: 1.5rem 0;
+    }
+
+    /* Table styling */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-size: 0.9rem;
+    }
+
+    .data-table th, .data-table td {
+      padding: 0.8rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .data-table th {
+      background: var(--bg);
+      color: var(--accent);
+      font-weight: 600;
     }
 
     footer {
       text-align: center;
-      padding: 2rem;
+      padding: 2.5rem 2rem;
       color: var(--text-muted);
       font-size: 0.85rem;
       border-top: 1px solid var(--border);
@@ -195,68 +264,161 @@
   <!-- Header -->
   <header>
     <div class="header-container">
-      <span class="meta-badge">Computer Science Academic Project</span>
+      <span class="meta-badge">CS Academic Showcase</span>
       <h1>The Algorithmic Trap</h1>
-      <p class="subtitle">An Analysis of Variable Reward Mechanisms and Behavioral Conditioning in Modern Feeds</p>
+      <p class="subtitle">An Analysis of Variable Reward Mechanisms, Behavioral Conditioning, and Attention Monetization in Modern Feeds</p>
       <div class="author-bar">
-        <span>Course: <strong>CS Project Showcase</strong></span>
-        <span>Topic: <strong>Attention Economy</strong></span>
-        <span>Platform: <strong>GitHub Pages</strong></span>
+        <span>Course: <strong>Computer Science Project</strong></span>
+        <span>Subject: <strong>Web Architecture & Ethics</strong></span>
+        <span>Deployment: <strong>GitHub Pages</strong></span>
       </div>
     </div>
   </header>
 
-  <!-- Navigation -->
+  <!-- Sticky Navigation -->
   <nav>
     <div class="nav-container">
-      <a href="#overview">1. Overview</a>
-      <a href="#demo">2. Interactive Demonstration</a>
-      <a href="#mechanics">3. Core Mechanics</a>
-      <a href="#conclusion">4. Conclusion</a>
+      <a href="#abstract">1. Abstract</a>
+      <a href="#introduction">2. Introduction</a>
+      <a href="#demo">3. Interactive Engine</a>
+      <a href="#psychology">4. Psychological Mechanics</a>
+      <a href="#telemetry">5. Telemetry Signals</a>
+      <a href="#casestudy">6. Case Study</a>
+      <a href="#references">7. References</a>
     </div>
   </nav>
 
-  <!-- Content -->
+  <!-- Content Sections -->
   <main>
-    <section id="overview" class="section-card">
-      <h2>1. Overview</h2>
-      <p>Modern social media applications utilize complex feedback loops designed to maximize user dwell time. This paper explores how algorithmic content distribution moves away from chronological ordering toward predictive engagement modeling.</p>
+
+    <!-- 1. Abstract -->
+    <section id="abstract" class="section-card">
+      <h2>1. Abstract</h2>
+      <p>Modern social media applications have transformed from decentralized communication tools into highly optimized engagement systems. By combining continuous telemetry analysis with predictive Machine Learning models, contemporary platforms curate content feeds designed to maximize user dwell time and monetization potential.</p>
+      <p>This paper investigates the underlying technological frameworks that power modern recommendation engines, analyzing how behavioral psychology principles—specifically variable reward schedules—are translated into digital software features such as infinite scrolling, push notification triggers, and algorithmic filtering.</p>
     </section>
 
-    <section id="demo" class="section-card interactive-card">
-      <h2>2. Interactive Demonstration</h2>
-      <p>The engine below simulates how platforms utilize variable micro-rewards to maintain user focus during continuous scroll sessions.</p>
+    <!-- 2. Introduction -->
+    <section id="introduction" class="section-card">
+      <h2>2. Introduction</h2>
+      <p>In the early days of the Web 2.0 era, digital social networks operated primarily on reverse-chronological feeds. Users saw posts from individuals they explicitly followed, ordered directly by timestamps. However, as platform user bases expanded into hundreds of millions, the sheer volume of content created a discovery bottleneck.</p>
       
+      <h3>2.1 The Shift Away from Chronological Sorting</h3>
+      <p>To resolve information overload and boost user retention, tech platforms transitioned from temporal feeds to personalized algorithmic recommendations. Under this paradigm, content delivery is governed not by chronological sequence, but by individual probability scores estimating how likely a user is to interact with a specific piece of media.</p>
+
+      <h3>2.2 Monetization and Attention Capture</h3>
+      <p>Because these applications are offered to consumers free of monetary charge, financial viability depends entirely on digital advertising revenues. Higher user dwell times correlate directly with increased ad impressions, creating a clear engineering directive: build software interfaces that maximize continuous screen attention.</p>
+
+      <div class="callout">
+        <strong>Key Insight:</strong> The transition from chronological feeds to predictive algorithmic sorting altered user interaction models permanently, prioritizing high-arousal content to maximize continuous session length.
+      </div>
+    </section>
+
+    <!-- 3. Interactive Engine -->
+    <section id="demo" class="section-card interactive-card">
+      <h2>3. Interactive Engagement Engine</h2>
+      <p>The interactive model below demonstrates the feedback loop built into modern social applications. Click the trigger button to simulate user scroll interactions and observe how the platform increments session engagement score.</p>
+
       <div class="demo-controls">
         <button class="btn-action" onclick="triggerEngagement()">Simulate Infinite Scroll Trigger</button>
-        <div class="score-display" id="score">Engagement Index: 0</div>
+        <div class="score-display" id="score">Engagement Index: 0 PTS</div>
       </div>
-      <p style="font-size: 0.85rem; color: var(--text-muted); text-align: center;">Each trigger simulates unpredictable high-value content delivery relative to dwell time.</p>
+
+      <p style="font-size: 0.85rem; color: var(--text-muted); text-align: center;">Each trigger represents a simulated high-value micro-reward delivered at random intervals during a session.</p>
     </section>
 
-    <section id="mechanics" class="section-card">
-      <h2>3. Core Mechanics</h2>
-      <p>Algorithmic platforms measure precise user telemetry to calculate engagement probabilities:</p>
+    <!-- 4. Psychological Mechanics -->
+    <section id="psychology" class="section-card">
+      <h2>4. Psychological Mechanics & Variable Rewards</h2>
+      <p>The core structural mechanism behind infinite-scroll design borrows directly from behavioral psychology research, specifically B.F. Skinner's experiments on operant conditioning. When reward schedules are intermittent and unpredictable (known as a <em>variable ratio reinforcement schedule</em>), subjects display higher persistence and increased frequency of action.</p>
+
+      <h3>4.1 UI Design Patterns as Conditioning Loops</h3>
+      <p>Software developers implement behavioral conditioning directly into mobile and desktop user interfaces through three primary design patterns:</p>
+
       <div class="grid">
         <div class="grid-item">
-          <h3>Dwell Time</h3>
-          <p>The exact duration a user pauses over a post, regardless of direct interaction.</p>
+          <h4>Continuous Scroll</h4>
+          <p>Eliminates natural stopping points or page boundaries, reducing cognitive friction during navigation.</p>
         </div>
         <div class="grid-item">
-          <h3>Interaction Velocity</h3>
-          <p>How quickly a post receives engagement immediately following publication.</p>
+          <h4>Pull-to-Refresh</h4>
+          <p>Mimics slot machine lever mechanics, offering an uncertain reward with every swipe down.</p>
         </div>
         <div class="grid-item">
-          <h3>Predictive Clustering</h3>
-          <p>Grouping content feeds based on real-time behavior pattern matches.</p>
+          <h4>Micro-Notifications</h4>
+          <p>Triggers batch notification updates to re-engage dormant sessions throughout the day.</p>
         </div>
       </div>
     </section>
 
-    <section id="conclusion" class="section-card">
-      <h2>4. Conclusion</h2>
-      <p>Understanding these algorithmic structures is essential for developing healthier digital habits and designing ethical user interfaces in web development.</p>
+    <!-- 5. Telemetry Signals -->
+    <section id="telemetry" class="section-card">
+      <h2>5. Telemetry Signals & Predictive Models</h2>
+      <p>Recommendation models continuously calculate user engagement probabilities by processing hundreds of individual data signals in real time. Rather than relying solely on explicit actions (such as likes or comments), models heavily weight implicit behavioral telemetry.</p>
+
+      <code-block>
+// Simplified Predictive Score Function Model
+Probability_Score = (DwellTime * 0.45) + (CompletionRate * 0.35) + (InteractionVelocity * 0.20);
+      </code-block>
+
+      <h3>5.1 Comparison of User Telemetry Signals</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Telemetry Signal</th>
+            <th>Signal Category</th>
+            <th>Description & Context</th>
+            <th>Algorithmic Weight</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Dwell Time</strong></td>
+            <td>Implicit</td>
+            <td>Millisecond duration a post remains paused in the active viewport.</td>
+            <td>High</td>
+          </tr>
+          <tr>
+            <td><strong>Completion Rate</strong></td>
+            <td>Implicit</td>
+            <td>Percentage of media viewed before initiating a scroll event.</td>
+            <td>High</td>
+          </tr>
+          <tr>
+            <td><strong>Interaction Velocity</strong></td>
+            <td>Explicit</td>
+            <td>Speed of likes/shares within the first 10 minutes of publishing.</td>
+            <td>Medium</td>
+          </tr>
+          <tr>
+            <td><strong>Explicit Feedback</strong></td>
+            <td>Explicit</td>
+            <td>Direct user actions such as clicks, comments, and saves.</td>
+            <td>Medium</td>
+          </tr>
+        </tbody>
+      </table>
     </section>
+
+    <!-- 6. Case Study -->
+    <section id="casestudy" class="section-card">
+      <h2>6. Case Study: Short-Form Video Systems</h2>
+      <p>Short-form video platforms represent the peak evolution of modern attention engineering. By presenting full-screen vertical media with zero interface padding between items, the platform eliminates navigation steps entirely.</p>
+      
+      <p>Unlike search engines where users explicitly type queries to express intent, short-form algorithms deduce intent passively. If a user pauses on a video for 1.8 seconds longer than average, the algorithm automatically adjusts cluster parameters to serve similar content in subsequent scroll cycles.</p>
+
+      <p>This creates a self-reinforcing feedback loop: the user receives tailored content instantly, while the machine learning model gathers higher-density training data with every second of screen activity.</p>
+    </section>
+
+    <!-- 7. References -->
+    <section id="references" class="section-card">
+      <h2>7. References & Citation</h2>
+      <p style="color: var(--text-muted); font-size: 0.9rem;">1. Skinner, B. F. (1953). <em>Science and Human Behavior</em>. Macmillan.</p>
+      <p style="color: var(--text-muted); font-size: 0.9rem;">2. Eyal, N. (2014). <em>Hooked: How to Build Habit-Forming Products</em>. Portfolio/Penguin.</p>
+      <p style="color: var(--text-muted); font-size: 0.9rem;">3. Harris, T. (2016). <em>How Technology is Hijacking Your Mind's Weaknesses</em>. Center for Humane Technology.</p>
+      <p style="color: var(--text-muted); font-size: 0.9rem;">4. Zuboff, S. (2019). <em>The Age of Surveillance Capitalism</em>. PublicAffairs.</p>
+    </section>
+
   </main>
 
   <footer>
