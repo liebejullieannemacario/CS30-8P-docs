@@ -1,195 +1,274 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Civil Engineering: Shaping infrastructure for common benefit and sustainable progress.">
-    <title>Civil Engineering: Sustainable Progress</title>
-    <style>
-        body {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.75;
-            color: #2d3748;
-            background-color: #f7fafc;
-            margin: 0;
-            padding: 0;
-        }
-        .main-container {
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 40px;
-            background-color: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-        }
-        header {
-            border-bottom: 3px solid #3182ce;
-            padding-bottom: 20px;
-            margin-bottom: 35px;
-        }
-        h1 {
-            font-size: 2.25rem;
-            color: #1a202c;
-            line-height: 1.2;
-            margin: 0 0 15px 0;
-            text-transform: uppercase;
-            letter-spacing: -0.02em;
-        }
-        .meta-data {
-            color: #718096;
-            font-size: 0.95rem;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-        .meta-item {
-            background-color: #edf2f7;
-            padding: 4px 12px;
-            border-radius: 4px;
-            font-weight: 500;
-        }
-        h2 {
-            font-size: 1.5rem;
-            color: #2b6cb0;
-            margin-top: 40px;
-            border-left: 4px solid #3182ce;
-            padding-left: 12px;
-        }
-        p {
-            margin-bottom: 22px;
-            text-align: justify;
-        }
-        .interactive-showcase {
-            background-color: #ebf8ff;
-            border: 1px solid #bee3f8;
-            border-radius: 6px;
-            padding: 25px;
-            margin: 35px 0;
-        }
-        .interactive-showcase h3 {
-            margin-top: 0;
-            color: #2b6cb0;
-        }
-        .btn-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-        .discipline-btn {
-            background-color: #ffffff;
-            border: 1px solid #90cdf4;
-            color: #2b6cb0;
-            padding: 8px 14px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.2s ease;
-        }
-        .discipline-btn:hover {
-            background-color: #ebf8ff;
-            transform: translateY(-1px);
-        }
-        .discipline-btn.active {
-            background-color: #3182ce;
-            color: #ffffff;
-            border-color: #3182ce;
-        }
-        .display-panel {
-            background-color: #ffffff;
-            padding: 15px 20px;
-            border-radius: 4px;
-            border: 1px solid #e2e8f0;
-            min-height: 80px;
-            font-style: italic;
-            color: #4a5568;
-        }
-        .reference-list {
-            margin-top: 50px;
-            padding-top: 20px;
-            border-top: 1px solid #e2e8f0;
-            font-size: 0.9rem;
-            color: #4a5568;
-        }
-        .reference-item {
-            margin-bottom: 15px;
-            padding-left: 20px;
-            text-indent: -20px;
-        }
-        .reference-item a {
-            color: #3182ce;
-            text-decoration: none;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Algorithmic Trap | Academic Project Showcase</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --card-bg: #161b22;
+      --border: #30363d;
+      --accent: #58a6ff;
+      --accent-purple: #bc8cff;
+      --text: #c9d1d9;
+      --text-bold: #f0f6fc;
+      --text-muted: #8b949e;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* Top Metadata Header */
+    header {
+      background: var(--card-bg);
+      border-bottom: 1px solid var(--border);
+      padding: 2.5rem 2rem 1.5rem;
+    }
+
+    .header-container {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .meta-badge {
+      display: inline-block;
+      background: rgba(88, 166, 255, 0.15);
+      color: var(--accent);
+      border: 1px solid rgba(88, 166, 255, 0.3);
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      color: var(--text-bold);
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .author-bar {
+      display: flex;
+      gap: 2rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      padding-top: 1rem;
+    }
+
+    .author-bar span strong { color: var(--text-bold); }
+
+    /* Sticky Navigation */
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(13, 17, 23, 0.9);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      z-index: 10;
+    }
+
+    .nav-container {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      gap: 1.5rem;
+      padding: 0.8rem 2rem;
+    }
+
+    .nav-container a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-container a:hover { color: var(--accent); }
+
+    /* Page Layout */
+    main {
+      max-width: 960px;
+      margin: 2rem auto 4rem;
+      padding: 0 2rem;
+    }
+
+    .section-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .section-card h2 {
+      font-size: 1.4rem;
+      color: var(--text-bold);
+      margin-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.5rem;
+    }
+
+    /* Interactive Demo Section */
+    .interactive-card {
+      border: 1px solid var(--accent-purple);
+      background: linear-gradient(180deg, rgba(188, 140, 255, 0.05) 0%, var(--card-bg) 100%);
+    }
+
+    .demo-controls {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      margin: 1.5rem 0;
+      padding: 1.5rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+    }
+
+    .btn-action {
+      background: var(--accent-purple);
+      color: #0d1117;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-weight: 700;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .btn-action:hover { opacity: 0.9; }
+
+    .score-display {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text-bold);
+    }
+
+    /* Data Highlights */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .grid-item {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 1rem;
+      border-radius: 6px;
+    }
+
+    .grid-item h3 {
+      font-size: 1rem;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+    }
+  </style>
 </head>
 <body>
-    <div class="main-container">
-        <header>
-            <h1>Civil Engineering: Shaping Infrastructure for Common Benefit and Sustainable Progress</h1>
-            <div class="meta-data">
-                <span class="meta-item"><strong>Author:</strong> Liebe Jullieanne Macario</span>
-                <span class="meta-item"><strong>ID:</strong> CE-2023107319</span>
-                <span class="meta-item"><strong>Date:</strong> November 20, 2023</span>
-                <span class="meta-item">Homework No. 1</span>
-            </div>
-        </header>
-        <main>
-            <p>Layout, making, and upkeep of infrastructure projects, including those involving roads, bridges, buildings, airports, water supply systems, and more, fall within the purview of civil engineering. The word "civil" describes these enterprises' intention to further the common benefit. Our physical surroundings are shaped by the vital profession of civil engineering. In order to serve communities and advance societal development, it calls for a blend of technical proficiency, inventiveness, and a dedication to enhancing infrastructure. It also provides a variety of options for specialization.</p>
-            <p>The application of scientific and engineering concepts by civil engineers guarantees that these projects are not only safe and functional, but also ecologically beneficial and sustainable. One factor justifies the significance of civil engineering: it makes the world a safer and easier place to live. Without civil engineering, many facets of human society would not be conceivable, such as construction. Planning and executing projects, moving materials, and developing sites using hydraulic, environmental, structural, and geotechnical engineering are all part of civil engineering.</p>
-            <p>In addition to providing a wide range of specialization options, civil engineering calls for a blend of technical proficiency, ingenuity, and a dedication to enhancing infrastructure in order to serve communities and advance society. Ensuring the safety, efficiency, and sustainability of the infrastructure we depend on is a critical responsibility of civil engineers.</p>
-            <h2>Professional Profile and Practice</h2>
-            <p>An expert in the planning, building, and upkeep of diverse infrastructure projects and systems is known as a civil engineer. Planning, analyzing, and supervising the construction of buildings, bridges, highways, dams, airports, and water supply systems are among the constructions they manage. Civil engineers make ensuring that projects are safe, ecologically friendly, practical, and sustainable by using scientific and engineering concepts.</p>
-            <p>They are essential to the project at every level, overseeing construction, producing comprehensive drawings, conducting feasibility studies, and making sure regulations are followed. They also require fundamental knowledge in geotechnical engineering, materials science, structural mechanics, and other related fields. Urban planners, construction teams, and architects work together with civil engineers. They are experts in geotechnical engineering, materials science, structural mechanics, and related fields. Decision-making and problem-solving abilities are essential as they tackle difficult problems and come up with creative solutions while taking the cost, safety, and environmental effects into account.</p>
 
-            <section class="interactive-showcase">
-                <h3>Interactive Discipline Explorer</h3>
-                <p>Click any core civil engineering discipline branch discussed in the paper below to reveal its professional scope instantly:</p>
-                <div class="btn-grid">
-                    <button class="discipline-btn" onclick="showDiscipline('construction', this)">Construction Engineering</button>
-                    <button class="discipline-btn" onclick="showDiscipline('structural', this)">Structural Engineering</button>
-                    <button class="discipline-btn" onclick="showDiscipline('geotechnical', this)">Geotechnical Engineering</button>
-                    <button class="discipline-btn" onclick="showDiscipline('transportation', this)">Transportation Engineering</button>
-                    <button class="discipline-btn" onclick="showDiscipline('environmental', this)">Environmental Engineering</button>
-                    <button class="discipline-btn" onclick="showDiscipline('water', this)">Water Resources Engineering</button>
-                    <button class="discipline-btn" onclick="showDiscipline('coastal', this)">Coastal Engineering</button>
-                </div>
-                <div id="discipline-text" class="display-panel">
-                    Click a specialization button above to load raw data definitions dynamically.
-                </div>
-            </section>
-
-            <h2>Historical Roots</h2>
-            <p>When people began to give up their nomadic lifestyles and build shelters, the earliest known applications of civil engineering may have begun in ancient Egypt, the Indus Valley civilization, and Mesopotamia (ancient Iraq) between 4000 and 2000 BC. Engineers have worked in peaceful fields from the beginning of time, and several examples of ancient and medieval civil engineering projects demonstrate a history of creative ingenuity and relentless experimentation.</p>
-            <p>The Bridge and Highway Corps, which was founded in France in 1716 and gave rise to the École Nationale des Ponts et Chaussées (or "National School of Bridges and Highways") in 1747, is considered to be the earliest example of civil engineering as a distinct academic field. Leading British engineers learnt to study French so they could comprehend the books its professors wrote, which went on to become standard works on the mechanics of materials, machines, and hydraulics. The nonmilitary engineer rose to the front of the stage as expert information was codified and articulated, and as design and computation replaced empirical formulas and rules of thumb. Civil engineers were once skilled artisans, stonemasons, millwrights, toolmakers, and instrument makers who were frequently self-taught.</p>
-
-            <h2>Discipline Framework and Recognition</h2>
-            <p>The wide area of civil engineering includes many sub-disciplines. The following requirements must be met for civil engineering to be recognized as a profession: a minimum of ten years of experience in civil engineering practice; graduation with a degree from an officially recognized and duly constituted school, institute, college, or university; and registration as a civil engineer with the relevant regulatory body.</p>
-
-            <section class="reference-list">
-                <h3>References</h3>
-                <div class="reference-item">Encyclopædia Britannica, inc. (2023, October 30). <em>Civil Engineering</em>. <a href="https://britannica.com" target="_blank" rel="noopener noreferrer">Link</a></div>
-                <div class="reference-item">Lucas, J. (2014, August 29). <em>What is civil engineering?</em>. <a href="https://livescience.com" target="_blank" rel="noopener noreferrer">Link</a></div>
-                <div class="reference-item">Civil and Environmental Engineering - UNSW Sydney. <a href="https://unsw.edu.au" target="_blank" rel="noopener noreferrer">Link</a></div>
-            </section>
-        </main>
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <span class="meta-badge">Computer Science Academic Project</span>
+      <h1>The Algorithmic Trap</h1>
+      <p class="subtitle">An Analysis of Variable Reward Mechanisms and Behavioral Conditioning in Modern Feeds</p>
+      <div class="author-bar">
+        <span>Course: <strong>CS Project Showcase</strong></span>
+        <span>Topic: <strong>Attention Economy</strong></span>
+        <span>Platform: <strong>GitHub Pages</strong></span>
+      </div>
     </div>
+  </header>
 
-    <script>
-        const descriptions = {
-            construction: "Focuses on the design, development, and upkeep of structures like roads, bridges, and buildings.",
-            structural: "In charge of planning and assessing structures to make sure they are capable of withstanding the loads and stresses they will encounter.",
-            geotechnical: "Studies the behavior of earth materials and how it impacts the building of structures.",
-            transportation: "Manages the planning, building, and upkeep of transportation infrastructure, including roads, airports, and trains.",
-            environmental: "Responsible for creating and executing solutions for environmental issues including water and air pollution.",
-            water: "Responsible for the management and development of water resources, including lakes, rivers, and groundwater.",
-            coastal: "Charged with creating buildings to shield coastlines from erosion and flooding."
-        };
-        function showDiscipline(key, clickedBtn) {
-            document.getElementById('discipline-text').innerText = descriptions[key];
-            const buttons = document.querySelectorAll('.discipline-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-            clickedBtn.classList.add('active');
-        }
-    </script>
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <a href="#overview">1. Overview</a>
+      <a href="#demo">2. Interactive Demonstration</a>
+      <a href="#mechanics">3. Core Mechanics</a>
+      <a href="#conclusion">4. Conclusion</a>
+    </div>
+  </nav>
+
+  <!-- Content -->
+  <main>
+    <section id="overview" class="section-card">
+      <h2>1. Overview</h2>
+      <p>Modern social media applications utilize complex feedback loops designed to maximize user dwell time. This paper explores how algorithmic content distribution moves away from chronological ordering toward predictive engagement modeling.</p>
+    </section>
+
+    <section id="demo" class="section-card interactive-card">
+      <h2>2. Interactive Demonstration</h2>
+      <p>The engine below simulates how platforms utilize variable micro-rewards to maintain user focus during continuous scroll sessions.</p>
+      
+      <div class="demo-controls">
+        <button class="btn-action" onclick="triggerEngagement()">Simulate Infinite Scroll Trigger</button>
+        <div class="score-display" id="score">Engagement Index: 0</div>
+      </div>
+      <p style="font-size: 0.85rem; color: var(--text-muted); text-align: center;">Each trigger simulates unpredictable high-value content delivery relative to dwell time.</p>
+    </section>
+
+    <section id="mechanics" class="section-card">
+      <h2>3. Core Mechanics</h2>
+      <p>Algorithmic platforms measure precise user telemetry to calculate engagement probabilities:</p>
+      <div class="grid">
+        <div class="grid-item">
+          <h3>Dwell Time</h3>
+          <p>The exact duration a user pauses over a post, regardless of direct interaction.</p>
+        </div>
+        <div class="grid-item">
+          <h3>Interaction Velocity</h3>
+          <p>How quickly a post receives engagement immediately following publication.</p>
+        </div>
+        <div class="grid-item">
+          <h3>Predictive Clustering</h3>
+          <p>Grouping content feeds based on real-time behavior pattern matches.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="conclusion" class="section-card">
+      <h2>4. Conclusion</h2>
+      <p>Understanding these algorithmic structures is essential for developing healthier digital habits and designing ethical user interfaces in web development.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Academic Showcase Project • Hosted on GitHub Pages</p>
+  </footer>
+
+  <script>
+    let score = 0;
+    function triggerEngagement() {
+      score += 25;
+      document.getElementById('score').innerText = 'Engagement Index: ' + score + ' PTS';
+    }
+  </script>
 </body>
 </html>
