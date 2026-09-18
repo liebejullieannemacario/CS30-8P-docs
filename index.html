@@ -1,436 +1,1325 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Algorithmic Trap | Academic Project Showcase</title>
-  <style>
-    :root {
-      --bg: #0d1117;
-      --card-bg: #161b22;
-      --border: #30363d;
-      --accent: #58a6ff;
-      --accent-purple: #bc8cff;
-      --text: #c9d1d9;
-      --text-bold: #f0f6fc;
-      --text-muted: #8b949e;
-      --code-bg: #010409;
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
-      line-height: 1.8;
-    }
-
-    /* Top Metadata Header */
-    header {
-      background: var(--card-bg);
-      border-bottom: 1px solid var(--border);
-      padding: 3rem 2rem 2rem;
-    }
-
-    .header-container {
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .meta-badge {
-      display: inline-block;
-      background: rgba(88, 166, 255, 0.15);
-      color: var(--accent);
-      border: 1px solid rgba(88, 166, 255, 0.3);
-      padding: 0.2rem 0.6rem;
-      border-radius: 6px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      margin-bottom: 0.8rem;
-    }
-
-    h1 {
-      font-size: 2.6rem;
-      color: var(--text-bold);
-      margin-bottom: 0.5rem;
-      line-height: 1.25;
-    }
-
-    .subtitle {
-      color: var(--text-muted);
-      font-size: 1.15rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .author-bar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      border-top: 1px solid var(--border);
-      padding-top: 1rem;
-    }
-
-    .author-bar span strong { color: var(--text-bold); }
-
-    /* Sticky Navigation */
-    nav {
-      position: sticky;
-      top: 0;
-      background: rgba(13, 17, 23, 0.95);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--border);
-      z-index: 100;
-    }
-
-    .nav-container {
-      max-width: 900px;
-      margin: 0 auto;
-      display: flex;
-      gap: 1.5rem;
-      padding: 0.8rem 2rem;
-      overflow-x: auto;
-    }
-
-    .nav-container a {
-      color: var(--text-muted);
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 500;
-      white-space: nowrap;
-      transition: color 0.2s;
-    }
-
-    .nav-container a:hover { color: var(--accent); }
-
-    /* Page Layout */
-    main {
-      max-width: 900px;
-      margin: 2.5rem auto 4rem;
-      padding: 0 2rem;
-    }
-
-    .section-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 2.5rem;
-      margin-bottom: 2.5rem;
-    }
-
-    .section-card h2 {
-      font-size: 1.6rem;
-      color: var(--text-bold);
-      margin-bottom: 1.2rem;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 0.6rem;
-    }
-
-    .section-card h3 {
-      font-size: 1.2rem;
-      color: var(--accent);
-      margin: 1.5rem 0 0.8rem;
-    }
-
-    .section-card p {
-      margin-bottom: 1.2rem;
-      color: var(--text);
-    }
-
-    /* Callout Box */
-    .callout {
-      background: rgba(88, 166, 255, 0.08);
-      border-left: 4px solid var(--accent);
-      padding: 1.2rem;
-      border-radius: 0 6px 6px 0;
-      margin: 1.5rem 0;
-      font-size: 0.95rem;
-    }
-
-    /* Interactive Demo Section */
-    .interactive-card {
-      border: 1px solid var(--accent-purple);
-      background: linear-gradient(180deg, rgba(188, 140, 255, 0.05) 0%, var(--card-bg) 100%);
-    }
-
-    .demo-controls {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-      margin: 1.5rem 0;
-      padding: 2rem;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-    }
-
-    .btn-action {
-      background: var(--accent-purple);
-      color: #0d1117;
-      border: none;
-      padding: 0.85rem 1.8rem;
-      font-weight: 700;
-      font-size: 0.95rem;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: opacity 0.2s, transform 0.1s;
-    }
-
-    .btn-action:hover { opacity: 0.9; }
-    .btn-action:active { transform: scale(0.98); }
-
-    .score-display {
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: var(--text-bold);
-    }
-
-    /* Data Highlights & Code Blocks */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.2rem;
-      margin: 1.5rem 0;
-    }
-
-    .grid-item {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      padding: 1.2rem;
-      border-radius: 6px;
-    }
-
-    .grid-item h4 {
-      font-size: 1rem;
-      color: var(--accent);
-      margin-bottom: 0.5rem;
-    }
-
-    .grid-item p {
-      font-size: 0.9rem;
-      margin-bottom: 0;
-      color: var(--text-muted);
-    }
-
-    code-block {
-      display: block;
-      background: var(--code-bg);
-      border: 1px solid var(--border);
-      padding: 1.2rem;
-      border-radius: 6px;
-      font-family: monospace;
-      font-size: 0.85rem;
-      color: var(--accent-purple);
-      overflow-x: auto;
-      margin: 1.5rem 0;
-    }
-
-    /* Table styling */
-    .data-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 1.5rem 0;
-      font-size: 0.9rem;
-    }
-
-    .data-table th, .data-table td {
-      padding: 0.8rem 1rem;
-      text-align: left;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .data-table th {
-      background: var(--bg);
-      color: var(--accent);
-      font-weight: 600;
-    }
-
-    footer {
-      text-align: center;
-      padding: 2.5rem 2rem;
-      color: var(--text-muted);
-      font-size: 0.85rem;
-      border-top: 1px solid var(--border);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smarter Streets Manila - CS30 Final Project</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                        },
+                        city: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#075985',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #059669 0%, #0284c7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #059669 0%, #0284c7 100%);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+    </style>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-brand-500 selection:text-white">
 
-  <!-- Header -->
-  <header>
-    <div class="header-container">
-      <span class="meta-badge">CS Academic Showcase</span>
-      <h1>The Algorithmic Trap</h1>
-      <p class="subtitle">An Analysis of Variable Reward Mechanisms, Behavioral Conditioning, and Attention Monetization in Modern Feeds</p>
-      <div class="author-bar">
-        <span>Course: <strong>Computer Science Project</strong></span>
-        <span>Subject: <strong>Web Architecture & Ethics</strong></span>
-        <span>Deployment: <strong>GitHub Pages</strong></span>
-      </div>
+    <header class="sticky top-0 z-40 glass-nav border-b border-slate-200/80 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <!-- Brand Title -->
+            <a href="#" class="flex items-center gap-2.5 group">
+                <div class="w-10 h-10 rounded-xl gradient-bg flex items-center justify-center text-white shadow-md shadow-brand-500/20 group-hover:scale-105 transition-transform">
+                    <i class="fa-solid font-bold fa-traffic-light text-lg"></i>
+                </div>
+                <div>
+                    <span class="font-extrabold text-lg tracking-tight text-slate-900 group-hover:text-brand-600 transition-colors">Smarter Streets</span>
+                    <span class="text-xs block font-medium text-slate-500 -mt-1">Manila Digital Resource</span>
+                </div>
+            </a>
+
+            <!-- Nav Links (Desktop) -->
+            <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600">
+                <a href="#overview" class="hover:text-brand-600 transition-colors">Overview</a>
+                <a href="#solutions" class="hover:text-brand-600 transition-colors">Solutions</a>
+                <a href="#simulator" class="hover:text-brand-600 transition-colors">Simulator</a>
+                <a href="#quiz" class="hover:text-brand-600 transition-colors">Quiz</a>
+                <a href="#student-info" class="hover:text-brand-600 transition-colors">Project Info</a>
+            </nav>
+
+            <!-- Action Button -->
+            <div class="flex items-center gap-3">
+                <button onclick="toggleModal(true)" class="inline-flex items-center gap-2 bg-slate-900 hover:bg-slate-800 text-white text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-xl shadow-sm hover:shadow transition-all">
+                    <i class="fa-solid fa-book-open"></i>
+                    <span>Read Summary</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="relative pt-8 pb-16 md:py-16 overflow-hidden bg-gradient-to-b from-slate-100/70 via-white to-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-10 items-center">
+                
+                <!-- Left Hero Content -->
+                <div class="lg:col-span-5 space-y-5 text-left">
+                    <div class="inline-flex items-center gap-2 bg-brand-50 border border-brand-200 text-brand-700 text-xs font-semibold px-3 py-1.5 rounded-full">
+                        <span class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span>
+                        CS30 Web Resource | Mapúa University
+                    </div>
+                    
+                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
+                        Making Metro Manila's Streets <span class="gradient-text">Smarter & Smoother</span>
+                    </h1>
+                    
+                    <p class="text-base text-slate-600 leading-relaxed font-normal">
+                        An interactive digital guide exploring how smart cameras, road sensors, and AI can help fix daily traffic, reduce power waste, and clean up our neighborhoods.
+                    </p>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-wrap items-center gap-3 pt-1">
+                        <a href="#solutions" class="inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-semibold text-sm px-5 py-3 rounded-xl shadow-lg shadow-brand-600/25 transition-all hover:-translate-y-0.5">
+                            <span>Explore Solutions</span>
+                            <i class="fa-solid fa-arrow-down text-xs"></i>
+                        </a>
+                        <a href="#simulator" class="inline-flex items-center gap-2 bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 font-semibold text-sm px-5 py-3 rounded-xl shadow-sm transition-all hover:-translate-y-0.5">
+                            <i class="fa-solid fa-sliders text-brand-600"></i>
+                            <span>Try Impact Simulator</span>
+                        </a>
+                    </div>
+
+                    <!-- Quick Highlights -->
+                    <div class="pt-4 grid grid-cols-3 gap-3 border-t border-slate-200/80 text-xs text-slate-500 font-medium">
+                        <div class="flex items-center gap-1.5">
+                            <i class="fa-solid fa-circle-check text-brand-500"></i>
+                            <span>Zero Privacy Loss</span>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <i class="fa-solid fa-circle-check text-brand-500"></i>
+                            <span>Lower Emissions</span>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <i class="fa-solid fa-circle-check text-brand-500"></i>
+                            <span>Smarter Power</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Interactive Intersection Canvas Box -->
+                <div class="lg:col-span-7">
+                    <div class="bg-slate-900 rounded-2xl p-4 sm:p-5 shadow-2xl border border-slate-800 text-white relative">
+                        <!-- Canvas Header / Status -->
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-3 pb-3 border-b border-slate-800">
+                            <div class="flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+                                <span class="text-xs font-bold uppercase tracking-wider text-slate-300">Intersection Signal Simulation</span>
+                            </div>
+                            
+                            <div class="flex items-center gap-2">
+                                <button onclick="triggerEmergencyVehicle()" class="px-2.5 py-1.5 rounded-lg text-xs font-bold transition-all bg-rose-950/80 hover:bg-rose-900 text-rose-300 border border-rose-500/40 flex items-center gap-1.5 shadow-sm">
+                                    <i class="fa-solid fa-truck-medical animate-bounce text-rose-400"></i>
+                                    <span>Ambulance Test</span>
+                                </button>
+                                
+                                <button id="heroAiToggle" onclick="toggleHeroAI()" class="px-3 py-1.5 rounded-lg text-xs font-bold transition-all bg-slate-800 hover:bg-slate-700 text-emerald-400 border border-emerald-500/40 flex items-center gap-1.5">
+                                    <i class="fa-solid fa-robot"></i>
+                                    <span>AI Mode: <strong id="aiToggleLabel" class="text-emerald-400">ON</strong></span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Canvas Viewport -->
+                        <div class="relative w-full h-72 sm:h-80 rounded-xl overflow-hidden bg-slate-950 border border-slate-800">
+                            <canvas id="heroCanvas" class="w-full h-full block"></canvas>
+                        </div>
+
+                        <!-- Real-Time Dynamic Simulation Metrics -->
+                        <div class="mt-3 grid grid-cols-4 gap-2 text-center text-[11px] text-slate-400 font-medium">
+                            <div class="bg-slate-800/60 p-2 rounded-lg border border-slate-800">
+                                <span class="block text-emerald-400 font-bold text-xs sm:text-sm" id="canvasSpeedMetric">32 km/h</span>
+                                <span>Avg Traffic Speed</span>
+                            </div>
+                            <div class="bg-slate-800/60 p-2 rounded-lg border border-slate-800">
+                                <span class="block text-city-400 font-bold text-xs sm:text-sm" id="canvasWaitMetric">12 sec</span>
+                                <span>Avg Queue Delay</span>
+                            </div>
+                            <div class="bg-slate-800/60 p-2 rounded-lg border border-slate-800">
+                                <span class="block text-amber-400 font-bold text-xs sm:text-sm" id="canvasQueueMetric">3 cars</span>
+                                <span>Max Lane Queue</span>
+                            </div>
+                            <div class="bg-slate-800/60 p-2 rounded-lg border border-slate-800">
+                                <span class="block font-bold text-xs sm:text-sm text-emerald-400" id="canvasFlowMetric">AI Optimized</span>
+                                <span>Control System</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="overview" class="py-16 bg-white border-y border-slate-200/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-xs font-extrabold uppercase tracking-widest text-brand-600 bg-brand-50 px-3 py-1 rounded-full border border-brand-200">The Big Picture</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-3">Why Manila Needs Smarter Streets</h2>
+                <p class="text-slate-600 text-sm sm:text-base mt-2">How small technological updates can transform major avenues like EDSA and España.</p>
+            </div>
+
+            <!-- 3 Main Overview Cards -->
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1: Problem -->
+                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200/80 hover:shadow-md transition-shadow relative overflow-hidden group">
+                    <div class="w-12 h-12 rounded-xl bg-rose-100 text-rose-600 flex items-center justify-center text-xl font-bold mb-4">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">1. The Daily Problem</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Metro Manila drivers waste over 100 hours every year in traffic jams. Traditional fixed-timer traffic lights don't know when a lane is backed up or empty.
+                    </p>
+                    <div class="mt-4 pt-4 border-t border-slate-200/60 flex items-center gap-2 text-xs font-semibold text-rose-600">
+                        <i class="fa-solid fa-clock"></i>
+                        <span>High fuel waste & long commutes</span>
+                    </div>
+                </div>
+
+                <!-- Card 2: Solution -->
+                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200/80 hover:shadow-md transition-shadow relative overflow-hidden group">
+                    <div class="w-12 h-12 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center text-xl font-bold mb-4">
+                        <i class="fa-solid fa-microchip"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">2. The Smart Fix</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Affordable optical road sensors count vehicles in real time. Smart algorithms immediately extend green lights for congested lanes to keep traffic moving.
+                    </p>
+                    <div class="mt-4 pt-4 border-t border-slate-200/60 flex items-center gap-2 text-xs font-semibold text-brand-600">
+                        <i class="fa-solid fa-bolt"></i>
+                        <span>Dynamic real-time traffic lights</span>
+                    </div>
+                </div>
+
+                <!-- Card 3: Result -->
+                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200/80 hover:shadow-md transition-shadow relative overflow-hidden group">
+                    <div class="w-12 h-12 rounded-xl bg-city-100 text-city-600 flex items-center justify-center text-xl font-bold mb-4">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">3. The Big Result</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Up to 30% reduction in daily travel delays, 40% street energy savings through auto-dimming lights, and cleaner air across local neighborhoods.
+                    </p>
+                    <div class="mt-4 pt-4 border-t border-slate-200/60 flex items-center gap-2 text-xs font-semibold text-city-600">
+                        <i class="fa-solid fa-leaf"></i>
+                        <span>Faster trips & lower carbon footprint</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="solutions" class="py-16 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-10">
+                <span class="text-xs font-extrabold uppercase tracking-widest text-city-600 bg-city-50 px-3 py-1 rounded-full border border-city-200">Core Pillars</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-3">4 Ways Smart Tech Helps Our City</h2>
+                <p class="text-slate-600 text-sm sm:text-base mt-2">Click through the tabs below to see how each solution operates simply and efficiently.</p>
+            </div>
+
+            <!-- Tab Buttons -->
+            <div class="flex flex-wrap justify-center gap-2 mb-8" id="tabButtons">
+                <button onclick="switchTab('traffic')" id="tabBtn-traffic" class="tab-btn px-5 py-3 rounded-xl font-semibold text-sm transition-all bg-brand-600 text-white shadow-md">
+                    <i class="fa-solid fa-traffic-light mr-2"></i>Smart Signals
+                </button>
+                <button onclick="switchTab('energy')" id="tabBtn-energy" class="tab-btn px-5 py-3 rounded-xl font-semibold text-sm transition-all bg-white text-slate-600 border border-slate-200 hover:bg-slate-100">
+                    <i class="fa-solid fa-bolt mr-2"></i>Smart Power
+                </button>
+                <button onclick="switchTab('waste')" id="tabBtn-waste" class="tab-btn px-5 py-3 rounded-xl font-semibold text-sm transition-all bg-white text-slate-600 border border-slate-200 hover:bg-slate-100">
+                    <i class="fa-solid fa-trash-can mr-2"></i>Waste Pickups
+                </button>
+                <button onclick="switchTab('privacy')" id="tabBtn-privacy" class="tab-btn px-5 py-3 rounded-xl font-semibold text-sm transition-all bg-white text-slate-600 border border-slate-200 hover:bg-slate-100">
+                    <i class="fa-solid fa-user-shield mr-2"></i>Privacy First
+                </button>
+            </div>
+
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm max-w-4xl mx-auto transition-all">
+                
+                <!-- Tab 1: Smart Traffic Signals -->
+                <div id="tabContent-traffic" class="tab-content space-y-6">
+                    <div class="flex items-center gap-4 border-b border-slate-100 pb-4">
+                        <div class="w-12 h-12 rounded-2xl bg-brand-100 text-brand-600 flex items-center justify-center text-2xl font-bold">
+                            <i class="fa-solid fa-video"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-extrabold text-slate-900">1. Smart Traffic Signals</h3>
+                            <p class="text-xs sm:text-sm text-slate-500">Adapting green lights based on live car queues instead of fixed timers.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <ul class="space-y-3 text-sm text-slate-600">
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-check text-brand-500 mt-1"></i>
+                                <span><strong>Car Counting:</strong> Low-cost camera sensors tally cars per lane in real time.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-check text-brand-500 mt-1"></i>
+                                <span><strong>Green Waves:</strong> Keeps consecutive lights green when a large group of vehicles moves together.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-check text-brand-500 mt-1"></i>
+                                <span><strong>Emergency Override:</strong> Gives immediate priority to approaching ambulances and fire trucks.</span>
+                            </li>
+                        </ul>
+                        
+                        <div class="bg-brand-50/60 p-5 rounded-2xl border border-brand-100 flex flex-col justify-between">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-brand-700">Impact Metric</span>
+                                <div class="text-3xl font-black text-brand-600 mt-1">-28 Minutes</div>
+                                <p class="text-xs text-slate-600 mt-1">Saved on average per daily commuter during peak rush hour.</p>
+                            </div>
+                            <div class="mt-4 pt-3 border-t border-brand-200/60 text-xs text-brand-700 font-semibold flex items-center justify-between">
+                                <span>Tested Route: EDSA Corridor</span>
+                                <i class="fa-solid fa-arrow-trend-down"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 2: Smart Power Grids -->
+                <div id="tabContent-energy" class="tab-content hidden space-y-6">
+                    <div class="flex items-center gap-4 border-b border-slate-100 pb-4">
+                        <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-2xl font-bold">
+                            <i class="fa-solid fa-lightbulb"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-extrabold text-slate-900">2. Smart Power Grids & Streetlights</h3>
+                            <p class="text-xs sm:text-sm text-slate-500">Dimming streetlamps when streets are clear to lower energy bills.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <ul class="space-y-3 text-sm text-slate-600">
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-check text-amber-500 mt-1"></i>
+                                <span><strong>Auto-Dimming:</strong> Streetlights operate at 30% brightness late at night and brighten when cars or pedestrians approach.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-check text-amber-500 mt-1"></i>
+                                <span><strong>Solar Backup:</strong> Solar battery storage ensures traffic lights stay operational during brownouts.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-check text-amber-500 mt-1"></i>
+                                <span><strong>Instant Maintenance Alerts:</strong> Tells city engineers exactly which light bulb needs replacing.</span>
+                            </li>
+                        </ul>
+                        
+                        <div class="bg-amber-50/60 p-5 rounded-2xl border border-amber-100 flex flex-col justify-between">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-amber-700">Energy Savings</span>
+                                <div class="text-3xl font-black text-amber-600 mt-1">42% Less Power</div>
+                                <p class="text-xs text-slate-600 mt-1">Lower city electricity expenditure without sacrificing public safety.</p>
+                            </div>
+                            <div class="mt-4 pt-3 border-t border-amber-200/60 text-xs text-amber-700 font-semibold flex items-center justify-between">
+                                <span>Green Energy Transition</span>
+                                <i class="fa-solid fa-plug-circle-check"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 3: Automated Trash Pickup -->
+                <div id="tabContent-waste" class="tab-content hidden space-y-6">
+                    <div class="flex items-center gap-4 border-b border-slate-100 pb-4">
+                        <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-2xl font-bold">
+                            <i class="fa-solid fa-trash-arrow-up"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-extrabold text-slate-900">3. Smart Garbage Collection</h3>
+                            <p class="text-xs sm:text-sm text-slate-500">Bins with fill-level sensors that only alert trucks when full.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <ul class="space-y-3 text-sm text-slate-600">
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-check text-emerald-500 mt-1"></i>
+                                <span><strong>Ultrasonic Level Sensors:</strong> Compact sensors track how full a trash bin is in percentage.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-check text-emerald-500 mt-1"></i>
+                                <span><strong>Optimized Truck Routes:</strong> Garbage trucks only visit full bins, skipping empty ones to save diesel.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-check text-emerald-500 mt-1"></i>
+                                <span><strong>Flood Prevention:</strong> Prevents overflowing waste from washing into drainage grates during storms.</span>
+                            </li>
+                        </ul>
+                        
+                        <div class="bg-emerald-50/60 p-5 rounded-2xl border border-emerald-100 flex flex-col justify-between">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-emerald-700">Cleaner Streets</span>
+                                <div class="text-3xl font-black text-emerald-600 mt-1">35% Fuel Saved</div>
+                                <p class="text-xs text-slate-600 mt-1">Reduced diesel usage for city garbage collection fleets.</p>
+                            </div>
+                            <div class="mt-4 pt-3 border-t border-emerald-200/60 text-xs text-emerald-700 font-semibold flex items-center justify-between">
+                                <span>Clean Drainage Systems</span>
+                                <i class="fa-solid fa-recycle"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 4: Privacy First -->
+                <div id="tabContent-privacy" class="tab-content hidden space-y-6">
+                    <div class="flex items-center gap-4 border-b border-slate-100 pb-4">
+                        <div class="w-12 h-12 rounded-2xl bg-indigo-100 text-indigo-600 flex items-center justify-center text-2xl font-bold">
+                            <i class="fa-solid fa-user-shield"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-extrabold text-slate-900">4. Privacy First Design</h3>
+                            <p class="text-xs sm:text-sm text-slate-500">Processing numbers locally so no faces or license plates are recorded.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <ul class="space-y-3 text-sm text-slate-600">
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-check text-indigo-500 mt-1"></i>
+                                <span><strong>Edge Processing:</strong> Images are converted into simple numbers inside the camera itself.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-check text-indigo-500 mt-1"></i>
+                                <span><strong>No Video Stored:</strong> Raw video footage is deleted instantly after vehicle counts are calculated.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-check text-indigo-500 mt-1"></i>
+                                <span><strong>Data Law Compliant:</strong> Strictly follows the Philippine Data Privacy Act of 2012.</span>
+                            </li>
+                        </ul>
+                        
+                        <div class="bg-indigo-50/60 p-5 rounded-2xl border border-indigo-100 flex flex-col justify-between">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-indigo-700">Citizen Protection</span>
+                                <div class="text-3xl font-black text-indigo-600 mt-1">100% Private</div>
+                                <p class="text-xs text-slate-600 mt-1">No personal identity tracking or facial recognition features.</p>
+                            </div>
+                            <div class="mt-4 pt-3 border-t border-indigo-200/60 text-xs text-indigo-700 font-semibold flex items-center justify-between">
+                                <span>Philippine DPA Compliant</span>
+                                <i class="fa-solid fa-lock"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="simulator" class="py-16 bg-white border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-xs font-extrabold uppercase tracking-widest text-brand-600 bg-brand-50 px-3 py-1 rounded-full border border-brand-200">Interactive CS30 Tool</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-3">Manila Smart City Impact Simulator</h2>
+                <p class="text-slate-600 text-sm sm:text-base mt-2">Adjust the sliders below to see how deploying smart infrastructure directly improves travel times and energy consumption.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-8 items-start">
+                
+                <!-- Sliders Control Box -->
+                <div class="lg:col-span-5 bg-slate-50 p-6 rounded-3xl border border-slate-200/90 shadow-sm space-y-6">
+                    <h3 class="font-extrabold text-slate-900 text-lg flex items-center gap-2">
+                        <i class="fa-solid fa-sliders text-brand-600"></i>
+                        <span>Deployment Sliders</span>
+                    </h3>
+
+                    <!-- Slider 1: Traffic Light Coverage -->
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-xs font-bold">
+                            <label for="sliderTraffic" class="text-slate-700">Smart Traffic Light Coverage</label>
+                            <span id="valTraffic" class="text-brand-600">60%</span>
+                        </div>
+                        <input type="range" id="sliderTraffic" min="0" max="100" value="60" oninput="updateSimulator()" class="w-full accent-brand-600 bg-slate-200 rounded-lg h-2 cursor-pointer">
+                        <p class="text-[11px] text-slate-500">Percentage of major intersections equipped with vehicle counting sensors.</p>
+                    </div>
+
+                    <!-- Slider 2: Solar & Smart Streetlights -->
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-xs font-bold">
+                            <label for="sliderEnergy" class="text-slate-700">Smart Streetlight Network</label>
+                            <span id="valEnergy" class="text-amber-600">40%</span>
+                        </div>
+                        <input type="range" id="sliderEnergy" min="0" max="100" value="40" oninput="updateSimulator()" class="w-full accent-amber-500 bg-slate-200 rounded-lg h-2 cursor-pointer">
+                        <p class="text-[11px] text-slate-500">Streetlamps upgraded with auto-dimming and solar backup.</p>
+                    </div>
+
+                    <!-- Slider 3: Automated Waste Bins -->
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-xs font-bold">
+                            <label for="sliderWaste" class="text-slate-700">Smart Waste Sensors</label>
+                            <span id="valWaste" class="text-city-600">50%</span>
+                        </div>
+                        <input type="range" id="sliderWaste" min="0" max="100" value="50" oninput="updateSimulator()" class="w-full accent-city-600 bg-slate-200 rounded-lg h-2 cursor-pointer">
+                        <p class="text-[11px] text-slate-500">Public trash bins equipped with fill level sensors.</p>
+                    </div>
+
+                    <!-- Policy Advice Box -->
+                    <div class="bg-blue-50/80 p-4 rounded-2xl border border-blue-200/70 text-xs space-y-1">
+                        <div class="font-bold text-blue-900 flex items-center gap-1.5">
+                            <i class="fa-solid fa-circle-info text-blue-600"></i>
+                            <span>Simulator Recommendation</span>
+                        </div>
+                        <p id="simRecommendation" class="text-blue-800 leading-relaxed font-normal">
+                            Increasing traffic light coverage above 70% drastically reduces rush-hour gridlock on EDSA.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Simulation Output Dashboard -->
+                <div class="lg:col-span-7 space-y-6">
+                    <!-- Metric Cards Grid -->
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                        
+                        <div class="bg-brand-50/70 p-4 rounded-2xl border border-brand-100 text-center">
+                            <i class="fa-solid fa-clock-rotate-left text-brand-600 text-lg mb-1"></i>
+                            <span class="block text-xs font-semibold text-slate-500">Commute Time Saved</span>
+                            <span id="metricSavedTime" class="text-xl sm:text-2xl font-black text-brand-700">24 mins/day</span>
+                        </div>
+
+                        <div class="bg-city-50/70 p-4 rounded-2xl border border-city-100 text-center">
+                            <i class="fa-solid fa-car-side text-city-600 text-lg mb-1"></i>
+                            <span class="block text-xs font-semibold text-slate-500">Traffic Reduction</span>
+                            <span id="metricTrafficRed" class="text-xl sm:text-2xl font-black text-city-700">-36%</span>
+                        </div>
+
+                        <div class="bg-amber-50/70 p-4 rounded-2xl border border-amber-100 text-center col-span-2 sm:col-span-1">
+                            <i class="fa-solid fa-bolt text-amber-600 text-lg mb-1"></i>
+                            <span class="block text-xs font-semibold text-slate-500">Power Saved</span>
+                            <span id="metricPowerSaved" class="text-xl sm:text-2xl font-black text-amber-700">120k kWh</span>
+                        </div>
+
+                    </div>
+
+                    <div class="bg-slate-900 p-5 rounded-3xl border border-slate-800 text-white">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold uppercase tracking-wider text-slate-300">Traffic Flow Comparison (Before vs. After AI)</span>
+                            <span class="text-[11px] bg-slate-800 text-emerald-400 px-2 py-0.5 rounded font-mono">Live Graph</span>
+                        </div>
+                        <div class="h-48 w-full relative">
+                            <canvas id="simChartCanvas" class="w-full h-full block"></canvas>
+                        </div>
+                        <div class="flex items-center justify-center gap-6 mt-3 text-xs text-slate-400">
+                            <div class="flex items-center gap-2">
+                                <span class="w-3 h-3 rounded-full bg-rose-500 inline-block"></span>
+                                <span>Old Timed Lights</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="w-3 h-3 rounded-full bg-emerald-400 inline-block"></span>
+                                <span>Smart AI Signals</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="quiz" class="py-16 bg-slate-50 border-t border-slate-200">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-10">
+                <span class="text-xs font-extrabold uppercase tracking-widest text-brand-600 bg-brand-50 px-3 py-1 rounded-full border border-brand-200">Interactive Quiz</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-3">Test Your Knowledge</h2>
+                <p class="text-slate-600 text-sm mt-2">Check what you learned from this digital resource with 3 quick questions!</p>
+            </div>
+
+            <!-- Quiz Card -->
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-8">
+                
+                <!-- Quiz Score Tracker -->
+                <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-500">CS30 Quick Assessment</span>
+                    <span id="quizScore" class="text-xs font-bold text-brand-600 bg-brand-50 px-3 py-1 rounded-full border border-brand-200">Score: 0 / 3</span>
+                </div>
+
+                <!-- Question 1 -->
+                <div class="space-y-3" id="q1Box">
+                    <p class="font-bold text-slate-900 text-sm sm:text-base">1. How do smart traffic signals know when to adjust light timing?</p>
+                    <div class="grid sm:grid-cols-2 gap-2 text-xs sm:text-sm">
+                        <button onclick="checkAnswer(1, false, this)" class="q-btn p-3 rounded-xl border border-slate-200 text-left hover:bg-slate-50 transition-all">A) They change on a fixed clock every 60 seconds.</button>
+                        <button onclick="checkAnswer(1, true, this)" class="q-btn p-3 rounded-xl border border-slate-200 text-left hover:bg-slate-50 transition-all">B) Cameras count cars and adjust green times dynamically.</button>
+                        <button onclick="checkAnswer(1, false, this)" class="q-btn p-3 rounded-xl border border-slate-200 text-left hover:bg-slate-50 transition-all">C) Police officers press buttons manually online.</button>
+                        <button onclick="checkAnswer(1, false, this)" class="q-btn p-3 rounded-xl border border-slate-200 text-left hover:bg-slate-50 transition-all">D) Drivers honk their horns near sensors.</button>
+                    </div>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="space-y-3" id="q2Box">
+                    <p class="font-bold text-slate-900 text-sm sm:text-base">2. Why does "Edge Processing" keep citizen privacy safe?</p>
+                    <div class="grid sm:grid-cols-2 gap-2 text-xs sm:text-sm">
+                        <button onclick="checkAnswer(2, false, this)" class="q-btn p-3 rounded-xl border border-slate-200 text-left hover:bg-slate-50 transition-all">A) Video files are uploaded to social media.</button>
+                        <button onclick="checkAnswer(2, true, this)" class="q-btn p-3 rounded-xl border border-slate-200 text-left hover:bg-slate-50 transition-all">B) Cameras convert images into numbers locally without storing face or plate video.</button>
+                        <button onclick="checkAnswer(2, false, this)" class="q-btn p-3 rounded-xl border border-slate-200 text-left hover:bg-slate-50 transition-all">C) Cameras turn off when cars drive past.</button>
+                        <button onclick="checkAnswer(2, false, this)" class="q-btn p-3 rounded-xl border border-slate-200 text-left hover:bg-slate-50 transition-all">D) Footage is sent to overseas servers.</button>
+                    </div>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="space-y-3" id="q3Box">
+                    <p class="font-bold text-slate-900 text-sm sm:text-base">3. How do smart garbage bin sensors help during Manila's rainy season?</p>
+                    <div class="grid sm:grid-cols-2 gap-2 text-xs sm:text-sm">
+                        <button onclick="checkAnswer(3, false, this)" class="q-btn p-3 rounded-xl border border-slate-200 text-left hover:bg-slate-50 transition-all">A) They act as umbrellas for street cats.</button>
+                        <button onclick="checkAnswer(3, false, this)" class="q-btn p-3 rounded-xl border border-slate-200 text-left hover:bg-slate-50 transition-all">B) They store rainwater for drinking.</button>
+                        <button onclick="checkAnswer(3, true, this)" class="q-btn p-3 rounded-xl border border-slate-200 text-left hover:bg-slate-50 transition-all">C) They prevent overflowing trash from clogging flood drains before heavy rains.</button>
+                        <button onclick="checkAnswer(3, false, this)" class="q-btn p-3 rounded-xl border border-slate-200 text-left hover:bg-slate-50 transition-all">D) They float during flash floods.</button>
+                    </div>
+                </div>
+
+                <div class="pt-2 text-center">
+                    <button onclick="resetQuiz()" class="text-xs text-slate-500 hover:text-slate-800 underline">Reset Quiz</button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-gradient-to-r from-brand-50 to-city-50 rounded-3xl p-8 border border-slate-200">
+                <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 mb-6 flex items-center gap-3">
+                    <i class="fa-solid fa-list-check text-brand-600"></i>
+                    <span>Key Takeaways for Students</span>
+                </h2>
+
+                <div class="grid sm:grid-cols-2 gap-4 text-sm text-slate-700">
+                    <div class="bg-white p-4 rounded-xl border border-slate-200 flex items-start gap-3">
+                        <i class="fa-solid fa-check-circle text-brand-500 text-lg mt-0.5"></i>
+                        <span><strong>Smart Cities aren't magic:</strong> Simple sensors connected to existing traffic lights create massive time savings.</span>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl border border-slate-200 flex items-start gap-3">
+                        <i class="fa-solid fa-check-circle text-brand-500 text-lg mt-0.5"></i>
+                        <span><strong>Privacy is protected:</strong> Edge computing counts cars locally so personal identity is never recorded.</span>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl border border-slate-200 flex items-start gap-3">
+                        <i class="fa-solid fa-check-circle text-brand-500 text-lg mt-0.5"></i>
+                        <span><strong>Saves municipal funds:</strong> Smart streetlamps cut government electric bills by dimming when roads are empty.</span>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl border border-slate-200 flex items-start gap-3">
+                        <i class="fa-solid fa-check-circle text-brand-500 text-lg mt-0.5"></i>
+                        <span><strong>Practical for LGUs:</strong> Philippine cities can deploy these upgrades incrementally starting with major intersections.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="student-info" class="bg-slate-900 text-white pt-12 pb-10 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+            
+            <div class="grid md:grid-cols-12 gap-8 items-center border-b border-slate-800 pb-10">
+                <!-- CS30 Student Card -->
+                <div class="md:col-span-7 space-y-3">
+                    <div class="inline-flex items-center gap-2 text-xs font-bold text-emerald-400 bg-emerald-950/80 px-3 py-1 rounded-full border border-emerald-800/80">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                        <span>CS30 - Websites & Online Communication Project</span>
+                    </div>
+                    <h3 class="text-xl font-bold">Mapúa University Final Project Showcase</h3>
+                    <p class="text-slate-400 text-xs sm:text-sm leading-relaxed max-w-xl">
+                        Designed by 3rd-year TCB student Liebe Macario. This project demonstrates how modern web design principles, interactive visual tools, and clear storytelling turn complex urban research into an engaging digital resource.
+                    </p>
+                </div>
+
+                <!-- Essay Action Modal Button -->
+                <div class="md:col-span-5 flex md:justify-end">
+                    <button onclick="toggleModal(true)" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-500 text-white font-bold text-sm px-6 py-3.5 rounded-xl transition-all shadow-lg shadow-brand-600/30">
+                        <i class="fa-solid fa-file-lines"></i>
+                        <span>Read Full Project Essay</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Bottom Copyright & Credits -->
+            <div class="flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+                <p>© 2026 Smarter Streets Manila. Created for CS30 Class Submission.</p>
+                <div class="flex items-center gap-4">
+                    <a href="#overview" class="hover:text-slate-300">Overview</a>
+                    <a href="#solutions" class="hover:text-slate-300">Solutions</a>
+                    <a href="#simulator" class="hover:text-slate-300">Simulator</a>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <div id="essayModal" class="fixed inset-0 z-50 hidden transition-opacity">
+        <!-- Backdrop -->
+        <div onclick="toggleModal(false)" class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm"></div>
+
+        <!-- Modal Container -->
+        <div class="fixed inset-y-0 right-0 max-w-2xl w-full bg-white shadow-2xl z-10 flex flex-col h-full">
+            
+            <!-- Modal Header -->
+            <div class="p-6 border-b border-slate-200 flex items-center justify-between bg-slate-50">
+                <div>
+                    <span class="text-xs font-bold text-brand-600 uppercase tracking-wider">CS30 Written Essay</span>
+                    <h3 class="text-lg font-bold text-slate-900">Smarter Streets Manila (Full Paper)</h3>
+                </div>
+                <button onclick="toggleModal(false)" class="w-9 h-9 rounded-full bg-slate-200 hover:bg-slate-300 text-slate-700 flex items-center justify-center transition-colors">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Modal Scrollable Content Body -->
+            <div class="p-6 sm:p-8 overflow-y-auto flex-1 custom-scrollbar text-slate-700 text-sm leading-relaxed space-y-6">
+                
+                <div>
+                    <h4 class="font-bold text-slate-900 text-base mb-1">Executive Summary</h4>
+                    <p>
+                        Metro Manila faces persistent traffic congestion and urban management challenges. Traditional infrastructure fixes (such as building more road lanes) are costly and constrained by limited land area. This research paper explores how low-cost optical cameras, smart traffic sensors, and decentralized energy grids provide a sustainable, high-impact alternative for local government units (LGUs).
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-slate-900 text-base mb-1">1. The Problem: Static Signal Cycles</h4>
+                    <p>
+                        Current traffic lights across Manila operate primarily on fixed timers. A green light stays on for 60 seconds regardless of whether there are 3 cars or 50 cars in the queue. During rainy days or sudden road obstruction events, static timers exacerbate gridlock, resulting in millions of lost productivity hours daily on key corridors such as EDSA, Taft Avenue, and España Boulevard.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-slate-900 text-base mb-1">2. The Solution: Adaptive Traffic Light Control</h4>
+                    <p>
+                        By installing camera-based vehicle detection sensors at key intersections, the traffic management system can calculate car density dynamically. When a lane becomes backed up, the system automatically extends its green light duration while maintaining safe pedestrian crossing windows. Simulation models demonstrate an immediate 25% to 35% reduction in average commute wait times.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-slate-900 text-base mb-1">3. Energy Efficiency & Smart Streetlights</h4>
+                    <p>
+                        Municipal electric bills consume a huge portion of LGU budgets. Smart LED streetlamps equipped with simple ambient sensors can auto-dim during non-peak midnight hours (11:00 PM – 4:00 AM) and brighten automatically when motion is detected. Integrating solar battery backups ensures intersection lights continue working even during sudden power outages.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-slate-900 text-base mb-1">4. Addressing Data Privacy Concerns</h4>
+                    <p>
+                        Public surveillance concerns are mitigated through Edge Computing technology. Visual frames are processed locally inside the camera hardware to output simple numerical counts (e.g., "12 cars in Lane A"). No video streams or face/license plate data are transmitted to external servers or retained in memory, ensuring 100% compliance with Republic Act No. 10173 (Data Privacy Act of 2012).
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-slate-900 text-base mb-1">Conclusion & Student Reflection</h4>
+                    <p>
+                        Building a web resource like this landing page helps communicate technical solutions in an accessible, interactive format. Technology shouldn't be intimidating—it should empower citizens and local leaders to make informed choices for a smoother, cleaner Metro Manila.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="p-4 border-t border-slate-200 bg-slate-50 flex justify-end">
+                <button onclick="toggleModal(false)" class="bg-slate-900 hover:bg-slate-800 text-white font-semibold text-xs px-5 py-2.5 rounded-xl">
+                    Close Drawer
+                </button>
+            </div>
+
+        </div>
     </div>
-  </header>
 
-  <!-- Sticky Navigation -->
-  <nav>
-    <div class="nav-container">
-      <a href="#abstract">1. Abstract</a>
-      <a href="#introduction">2. Introduction</a>
-      <a href="#demo">3. Interactive Engine</a>
-      <a href="#psychology">4. Psychological Mechanics</a>
-      <a href="#telemetry">5. Telemetry Signals</a>
-      <a href="#casestudy">6. Case Study</a>
-      <a href="#references">7. References</a>
-    </div>
-  </nav>
+    <script>
+        // Global State Variables
+        let isHeroAiOn = true;
+        let quizScoreCount = 0;
+        let answeredQuestions = { 1: false, 2: false, 3: false };
 
-  <!-- Content Sections -->
-  <main>
+        // Tab Switching Logic
+        function switchTab(tabKey) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-brand-600', 'text-white', 'shadow-md');
+                btn.classList.add('bg-white', 'text-slate-600', 'border', 'border-slate-200');
+            });
 
-    <!-- 1. Abstract -->
-    <section id="abstract" class="section-card">
-      <h2>1. Abstract</h2>
-      <p>Modern social media applications have transformed from decentralized communication tools into highly optimized engagement systems. By combining continuous telemetry analysis with predictive Machine Learning models, contemporary platforms curate content feeds designed to maximize user dwell time and monetization potential.</p>
-      <p>This paper investigates the underlying technological frameworks that power modern recommendation engines, analyzing how behavioral psychology principles—specifically variable reward schedules—are translated into digital software features such as infinite scrolling, push notification triggers, and algorithmic filtering.</p>
-    </section>
+            const activeContent = document.getElementById(`tabContent-${tabKey}`);
+            const activeBtn = document.getElementById(`tabBtn-${tabKey}`);
 
-    <!-- 2. Introduction -->
-    <section id="introduction" class="section-card">
-      <h2>2. Introduction</h2>
-      <p>In the early days of the Web 2.0 era, digital social networks operated primarily on reverse-chronological feeds. Users saw posts from individuals they explicitly followed, ordered directly by timestamps. However, as platform user bases expanded into hundreds of millions, the sheer volume of content created a discovery bottleneck.</p>
-      
-      <h3>2.1 The Shift Away from Chronological Sorting</h3>
-      <p>To resolve information overload and boost user retention, tech platforms transitioned from temporal feeds to personalized algorithmic recommendations. Under this paradigm, content delivery is governed not by chronological sequence, but by individual probability scores estimating how likely a user is to interact with a specific piece of media.</p>
+            if (activeContent) activeContent.classList.remove('hidden');
+            if (activeBtn) {
+                activeBtn.classList.remove('bg-white', 'text-slate-600', 'border', 'border-slate-200');
+                activeBtn.classList.add('bg-brand-600', 'text-white', 'shadow-md');
+            }
+        }
 
-      <h3>2.2 Monetization and Attention Capture</h3>
-      <p>Because these applications are offered to consumers free of monetary charge, financial viability depends entirely on digital advertising revenues. Higher user dwell times correlate directly with increased ad impressions, creating a clear engineering directive: build software interfaces that maximize continuous screen attention.</p>
+        // Modal Drawer Toggle Logic
+        function toggleModal(show) {
+            const modal = document.getElementById('essayModal');
+            if (show) {
+                modal.classList.remove('hidden');
+            } else {
+                modal.classList.add('hidden');
+            }
+        }
 
-      <div class="callout">
-        <strong>Key Insight:</strong> The transition from chronological feeds to predictive algorithmic sorting altered user interaction models permanently, prioritizing high-arousal content to maximize continuous session length.
-      </div>
-    </section>
+        const canvas = document.getElementById('heroCanvas');
+        const ctx = canvas.getContext('2d');
 
-    <!-- 3. Interactive Engine -->
-    <section id="demo" class="section-card interactive-card">
-      <h2>3. Interactive Engagement Engine</h2>
-      <p>The interactive model below demonstrates the feedback loop built into modern social applications. Click the trigger button to simulate user scroll interactions and observe how the platform increments session engagement score.</p>
+        function resizeCanvas() {
+            if (!canvas.parentElement) return;
+            canvas.width = canvas.parentElement.clientWidth;
+            canvas.height = canvas.parentElement.clientHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
 
-      <div class="demo-controls">
-        <button class="btn-action" onclick="triggerEngagement()">Simulate Infinite Scroll Trigger</button>
-        <div class="score-display" id="score">Engagement Index: 0 PTS</div>
-      </div>
+        // 4-Way Intersection Traffic Simulation Data Structures
+        // Axis 0 = Horizontal (Main Avenue: West to East & East to West)
+        // Axis 1 = Vertical (Cross Street: North to South & South to North)
+        let activeGreenAxis = 0; // 0 = Horizontal green, 1 = Vertical green
+        let phaseTimer = 0;
+        let isYellowPhase = false;
+        let yellowTimer = 0;
+        const MIN_GREEN_TIME = 100; // Minimum frames before light can switch in AI mode
+        const FIXED_CYCLE_TIME = 240; // Fixed timer duration for non-AI mode
 
-      <p style="font-size: 0.85rem; color: var(--text-muted); text-align: center;">Each trigger represents a simulated high-value micro-reward delivered at random intervals during a session.</p>
-    </section>
+        let heroCars = [];
+        let nextCarId = 1;
 
-    <!-- 4. Psychological Mechanics -->
-    <section id="psychology" class="section-card">
-      <h2>4. Psychological Mechanics & Variable Rewards</h2>
-      <p>The core structural mechanism behind infinite-scroll design borrows directly from behavioral psychology research, specifically B.F. Skinner's experiments on operant conditioning. When reward schedules are intermittent and unpredictable (known as a <em>variable ratio reinforcement schedule</em>), subjects display higher persistence and increased frequency of action.</p>
+        // Direction mapping: 
+        // 0: Eastbound (Horizontal, x increases)
+        // 1: Westbound (Horizontal, x decreases)
+        // 2: Southbound (Vertical, y increases)
+        // 3: Northbound (Vertical, y decreases)
+        
+        function spawnCar(dirOverride, isEmergency = false) {
+            if (!canvas.width) return;
+            
+            const dir = (dirOverride !== undefined) ? dirOverride : Math.floor(Math.random() * 4);
+            const carWidth = isEmergency ? 26 : (18 + Math.random() * 8);
+            const carHeight = 11;
+            
+            let color;
+            if (isEmergency) {
+                color = '#ef4444'; // Red emergency vehicle
+            } else {
+                const palette = ['#10b981', '#0284c7', '#f59e0b', '#8b5cf6', '#ec4899'];
+                color = palette[Math.floor(Math.random() * palette.length)];
+            }
 
-      <h3>4.1 UI Design Patterns as Conditioning Loops</h3>
-      <p>Software developers implement behavioral conditioning directly into mobile and desktop user interfaces through three primary design patterns:</p>
+            const laneOffset = 10;
+            let x, y, vx, vy;
 
-      <div class="grid">
-        <div class="grid-item">
-          <h4>Continuous Scroll</h4>
-          <p>Eliminates natural stopping points or page boundaries, reducing cognitive friction during navigation.</p>
-        </div>
-        <div class="grid-item">
-          <h4>Pull-to-Refresh</h4>
-          <p>Mimics slot machine lever mechanics, offering an uncertain reward with every swipe down.</p>
-        </div>
-        <div class="grid-item">
-          <h4>Micro-Notifications</h4>
-          <p>Triggers batch notification updates to re-engage dormant sessions throughout the day.</p>
-        </div>
-      </div>
-    </section>
+            if (dir === 0) { // Eastbound
+                x = -40;
+                y = canvas.height / 2 + laneOffset;
+                vx = 2.0 + Math.random() * 0.8;
+                vy = 0;
+            } else if (dir === 1) { // Westbound
+                x = canvas.width + 40;
+                y = canvas.height / 2 - laneOffset - carHeight;
+                vx = -(2.0 + Math.random() * 0.8);
+                vy = 0;
+            } else if (dir === 2) { // Southbound
+                x = canvas.width / 2 - laneOffset - carHeight;
+                y = -40;
+                vx = 0;
+                vy = 2.0 + Math.random() * 0.8;
+            } else { // Northbound
+                x = canvas.width / 2 + laneOffset;
+                y = canvas.height + 40;
+                vx = 0;
+                vy = -(2.0 + Math.random() * 0.8);
+            }
 
-    <!-- 5. Telemetry Signals -->
-    <section id="telemetry" class="section-card">
-      <h2>5. Telemetry Signals & Predictive Models</h2>
-      <p>Recommendation models continuously calculate user engagement probabilities by processing hundreds of individual data signals in real time. Rather than relying solely on explicit actions (such as likes or comments), models heavily weight implicit behavioral telemetry.</p>
+            heroCars.push({
+                id: nextCarId++,
+                dir: dir,
+                x: x,
+                y: y,
+                vx: vx,
+                vy: vy,
+                baseSpeed: Math.abs(vx || vy),
+                currentSpeed: Math.abs(vx || vy),
+                width: (dir === 0 || dir === 1) ? carWidth : carHeight,
+                height: (dir === 0 || dir === 1) ? carHeight : carWidth,
+                color: color,
+                isEmergency: isEmergency,
+                stoppedFrames: 0
+            });
+        }
 
-      <code-block>
-// Simplified Predictive Score Function Model
-Probability_Score = (DwellTime * 0.45) + (CompletionRate * 0.35) + (InteractionVelocity * 0.20);
-      </code-block>
+        // Initialize car population
+        function initIntersectionCars() {
+            heroCars = [];
+            for (let i = 0; i < 12; i++) {
+                spawnCar();
+            }
+        }
+        initIntersectionCars();
 
-      <h3>5.1 Comparison of User Telemetry Signals</h3>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th>Telemetry Signal</th>
-            <th>Signal Category</th>
-            <th>Description & Context</th>
-            <th>Algorithmic Weight</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Dwell Time</strong></td>
-            <td>Implicit</td>
-            <td>Millisecond duration a post remains paused in the active viewport.</td>
-            <td>High</td>
-          </tr>
-          <tr>
-            <td><strong>Completion Rate</strong></td>
-            <td>Implicit</td>
-            <td>Percentage of media viewed before initiating a scroll event.</td>
-            <td>High</td>
-          </tr>
-          <tr>
-            <td><strong>Interaction Velocity</strong></td>
-            <td>Explicit</td>
-            <td>Speed of likes/shares within the first 10 minutes of publishing.</td>
-            <td>Medium</td>
-          </tr>
-          <tr>
-            <td><strong>Explicit Feedback</strong></td>
-            <td>Explicit</td>
-            <td>Direct user actions such as clicks, comments, and saves.</td>
-            <td>Medium</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
+        function triggerEmergencyVehicle() {
+            // Spawn an emergency vehicle heading Eastbound or Southbound
+            const dir = Math.random() > 0.5 ? 0 : 2;
+            spawnCar(dir, true);
+        }
 
-    <!-- 6. Case Study -->
-    <section id="casestudy" class="section-card">
-      <h2>6. Case Study: Short-Form Video Systems</h2>
-      <p>Short-form video platforms represent the peak evolution of modern attention engineering. By presenting full-screen vertical media with zero interface padding between items, the platform eliminates navigation steps entirely.</p>
-      
-      <p>Unlike search engines where users explicitly type queries to express intent, short-form algorithms deduce intent passively. If a user pauses on a video for 1.8 seconds longer than average, the algorithm automatically adjusts cluster parameters to serve similar content in subsequent scroll cycles.</p>
+        function toggleHeroAI() {
+            isHeroAiOn = !isHeroAiOn;
+            const label = document.getElementById('aiToggleLabel');
+            
+            if (isHeroAiOn) {
+                label.innerText = 'ON';
+                label.className = 'text-emerald-400';
+            } else {
+                label.innerText = 'OFF (Timed)';
+                label.className = 'text-rose-400';
+            }
+        }
 
-      <p>This creates a self-reinforcing feedback loop: the user receives tailored content instantly, while the machine learning model gathers higher-density training data with every second of screen activity.</p>
-    </section>
+        // Main Simulation Loop for 4-Way Intersection
+        function renderHeroCanvas() {
+            if (!canvas.width) resizeCanvas();
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    <!-- 7. References -->
-    <section id="references" class="section-card">
-      <h2>7. References & Citation</h2>
-      <p style="color: var(--text-muted); font-size: 0.9rem;">1. Skinner, B. F. (1953). <em>Science and Human Behavior</em>. Macmillan.</p>
-      <p style="color: var(--text-muted); font-size: 0.9rem;">2. Eyal, N. (2014). <em>Hooked: How to Build Habit-Forming Products</em>. Portfolio/Penguin.</p>
-      <p style="color: var(--text-muted); font-size: 0.9rem;">3. Harris, T. (2016). <em>How Technology is Hijacking Your Mind's Weaknesses</em>. Center for Humane Technology.</p>
-      <p style="color: var(--text-muted); font-size: 0.9rem;">4. Zuboff, S. (2019). <em>The Age of Surveillance Capitalism</em>. PublicAffairs.</p>
-    </section>
+            const w = canvas.width;
+            const h = canvas.height;
+            const roadWidth = 54;
+            const cx = w / 2;
+            const cy = h / 2;
 
-  </main>
+            // Background Asphalt
+            ctx.fillStyle = '#0f172a';
+            ctx.fillRect(0, 0, w, h);
 
-  <footer>
-    <p>Academic Showcase Project • Hosted on GitHub Pages</p>
-  </footer>
+            // Horizontal Road (Main Corridor)
+            ctx.fillStyle = '#1e293b';
+            ctx.fillRect(0, cy - roadWidth/2, w, roadWidth);
 
-  <script>
-    let score = 0;
-    function triggerEngagement() {
-      score += 25;
-      document.getElementById('score').innerText = 'Engagement Index: ' + score + ' PTS';
-    }
-  </script>
+            // Vertical Road (Cross Street)
+            ctx.fillRect(cx - roadWidth/2, 0, roadWidth, h);
+
+            // Center Intersection Box
+            ctx.fillStyle = '#334155';
+            ctx.fillRect(cx - roadWidth/2, cy - roadWidth/2, roadWidth, roadWidth);
+
+            // Road Markings - Yellow Center Lines & Dashed Lane Lines
+            ctx.strokeStyle = '#f59e0b';
+            ctx.lineWidth = 2;
+            
+            // Horizontal Center Double Line
+            ctx.beginPath();
+            ctx.moveTo(0, cy); ctx.lineTo(cx - roadWidth/2, cy);
+            ctx.moveTo(cx + roadWidth/2, cy); ctx.lineTo(w, cy);
+            ctx.stroke();
+
+            // Vertical Center Double Line
+            ctx.beginPath();
+            ctx.moveTo(cx, 0); ctx.lineTo(cx, cy - roadWidth/2);
+            ctx.moveTo(cx, cy + roadWidth/2); ctx.lineTo(cx, h);
+            ctx.stroke();
+
+            // Stop Lines at Intersection
+            ctx.strokeStyle = '#ffffff';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            // Eastbound Stop Line
+            ctx.moveTo(cx - roadWidth/2, cy); ctx.lineTo(cx - roadWidth/2, cy + roadWidth/2);
+            // Westbound Stop Line
+            ctx.moveTo(cx + roadWidth/2, cy - roadWidth/2); ctx.lineTo(cx + roadWidth/2, cy);
+            // Southbound Stop Line
+            ctx.moveTo(cx - roadWidth/2, cy - roadWidth/2); ctx.lineTo(cx, cy - roadWidth/2);
+            // Northbound Stop Line
+            ctx.moveTo(cx, cy + roadWidth/2); ctx.lineTo(cx + roadWidth/2, cy + roadWidth/2);
+            ctx.stroke();
+
+            // AI Camera Sensor Overlays (Visualizing Edge Computing Sensors)
+            if (isHeroAiOn) {
+                ctx.strokeStyle = '#10b981';
+                ctx.lineWidth = 1;
+                ctx.setLineDash([3, 3]);
+                // Horizontal Sensing Zones
+                ctx.strokeRect(cx - roadWidth/2 - 90, cy + 2, 85, roadWidth/2 - 4);
+                ctx.strokeRect(cx + roadWidth/2 + 5, cy - roadWidth/2 + 2, 85, roadWidth/2 - 4);
+                // Vertical Sensing Zones
+                ctx.strokeRect(cx - roadWidth/2 + 2, cy - roadWidth/2 - 90, roadWidth/2 - 4, 85);
+                ctx.strokeRect(cx + 2, cy + roadWidth/2 + 5, roadWidth/2 - 4, 85);
+                ctx.setLineDash([]);
+            }
+
+            // Count waiting/queued cars per axis
+            let horizQueue = 0;
+            let vertQueue = 0;
+            let hasEmergencyHoriz = false;
+            let hasEmergencyVert = false;
+
+            const stopDistance = roadWidth / 2 + 8;
+
+            heroCars.forEach(car => {
+                // Check queued cars (stopped near intersection)
+                if (car.dir === 0 && car.x < cx - stopDistance && car.x > cx - stopDistance - 120) {
+                    if (car.currentSpeed < 0.5) horizQueue++;
+                    if (car.isEmergency) hasEmergencyHoriz = true;
+                }
+                if (car.dir === 1 && car.x > cx + stopDistance && car.x < cx + stopDistance + 120) {
+                    if (car.currentSpeed < 0.5) horizQueue++;
+                    if (car.isEmergency) hasEmergencyHoriz = true;
+                }
+                if (car.dir === 2 && car.y < cy - stopDistance && car.y > cy - stopDistance - 120) {
+                    if (car.currentSpeed < 0.5) vertQueue++;
+                    if (car.isEmergency) hasEmergencyVert = true;
+                }
+                if (car.dir === 3 && car.y > cy + stopDistance && car.y < cy + stopDistance + 120) {
+                    if (car.currentSpeed < 0.5) vertQueue++;
+                    if (car.isEmergency) hasEmergencyVert = true;
+                }
+            });
+
+            // Signal Switching Logic
+            phaseTimer++;
+
+            if (isYellowPhase) {
+                yellowTimer++;
+                if (yellowTimer > 35) { // 35 frames for yellow light transition
+                    isYellowPhase = false;
+                    yellowTimer = 0;
+                    phaseTimer = 0;
+                    activeGreenAxis = activeGreenAxis === 0 ? 1 : 0; // Switch active green axis
+                }
+            } else {
+                if (isHeroAiOn) {
+                    // AI Adaptive Mode
+                    // Emergency Vehicle Priority Override
+                    if (hasEmergencyHoriz && activeGreenAxis !== 0) {
+                        isYellowPhase = true;
+                        yellowTimer = 0;
+                    } else if (hasEmergencyVert && activeGreenAxis !== 1) {
+                        isYellowPhase = true;
+                        yellowTimer = 0;
+                    } 
+                    // Dynamic Queue Clearing Override
+                    else if (phaseTimer > MIN_GREEN_TIME) {
+                        if (activeGreenAxis === 0 && vertQueue > horizQueue + 1) {
+                            isYellowPhase = true;
+                            yellowTimer = 0;
+                        } else if (activeGreenAxis === 1 && horizQueue > vertQueue + 1) {
+                            isYellowPhase = true;
+                            yellowTimer = 0;
+                        }
+                    }
+                } else {
+                    // Timed Mode (Fixed Non-Adaptive Cycles)
+                    if (phaseTimer > FIXED_CYCLE_TIME) {
+                        isYellowPhase = true;
+                        yellowTimer = 0;
+                    }
+                }
+            }
+
+            // Draw Traffic Lights
+            function drawLightHead(x, y, isGreen, isYellow) {
+                ctx.fillStyle = '#020617';
+                ctx.fillRect(x - 8, y - 8, 16, 16);
+                ctx.strokeStyle = '#334155';
+                ctx.strokeRect(x - 8, y - 8, 16, 16);
+
+                let lightColor = '#ef4444'; // Red default
+                if (isYellow) lightColor = '#f59e0b';
+                else if (isGreen) lightColor = '#10b981';
+
+                ctx.fillStyle = lightColor;
+                ctx.beginPath();
+                ctx.arc(x, y, 5, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Glow effect for green/yellow
+                if (isGreen || isYellow) {
+                    ctx.fillStyle = lightColor + '44';
+                    ctx.beginPath();
+                    ctx.arc(x, y, 9, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+
+            const horizGreen = (activeGreenAxis === 0) && !isYellowPhase;
+            const horizYellow = (activeGreenAxis === 0) && isYellowPhase;
+            const vertGreen = (activeGreenAxis === 1) && !isYellowPhase;
+            const vertYellow = (activeGreenAxis === 1) && isYellowPhase;
+
+            // Draw lights at intersection corners
+            drawLightHead(cx - roadWidth/2 - 12, cy + roadWidth/2 + 12, horizGreen, horizYellow); // Horizontal light
+            drawLightHead(cx + roadWidth/2 + 12, cy - roadWidth/2 - 12, horizGreen, horizYellow); // Horizontal light
+            drawLightHead(cx - roadWidth/2 - 12, cy - roadWidth/2 - 12, vertGreen, vertYellow);   // Vertical light
+            drawLightHead(cx + roadWidth/2 + 12, cy + roadWidth/2 + 12, vertGreen, vertYellow);   // Vertical light
+
+            let totalSpeed = 0;
+            let totalStoppedFrames = 0;
+            let activeCarCount = heroCars.length;
+
+            // Periodically spawn new cars to maintain realistic traffic volume
+            if (Math.random() < 0.04 && heroCars.length < 22) {
+                spawnCar();
+            }
+
+            for (let i = heroCars.length - 1; i >= 0; i--) {
+                const car = heroCars[i];
+                let shouldStop = false;
+
+                // Check distance to stop line based on current light phase
+                if (car.dir === 0) { // Eastbound
+                    const stopX = cx - stopDistance;
+                    if (car.x < stopX && car.x > stopX - 25 && (!horizGreen || isYellowPhase)) {
+                        shouldStop = true;
+                    }
+                } else if (car.dir === 1) { // Westbound
+                    const stopX = cx + stopDistance;
+                    if (car.x > stopX && car.x < stopX + 25 && (!horizGreen || isYellowPhase)) {
+                        shouldStop = true;
+                    }
+                } else if (car.dir === 2) { // Southbound
+                    const stopY = cy - stopDistance;
+                    if (car.y < stopY && car.y > stopY - 25 && (!vertGreen || isYellowPhase)) {
+                        shouldStop = true;
+                    }
+                } else if (car.dir === 3) { // Northbound
+                    const stopY = cy + stopDistance;
+                    if (car.y > stopY && car.y < stopY + 25 && (!vertGreen || isYellowPhase)) {
+                        shouldStop = true;
+                    }
+                }
+
+                // Car-to-Car Collision Avoidance (Queueing behind front car)
+                for (let j = 0; j < heroCars.length; j++) {
+                    if (i === j) continue;
+                    const other = heroCars[j];
+                    if (other.dir !== car.dir) continue;
+
+                    const safeGap = 22;
+                    if (car.dir === 0 && other.x > car.x && other.x - car.x < safeGap) shouldStop = true;
+                    if (car.dir === 1 && other.x < car.x && car.x - other.x < safeGap) shouldStop = true;
+                    if (car.dir === 2 && other.y > car.y && other.y - car.y < safeGap) shouldStop = true;
+                    if (car.dir === 3 && other.y < car.y && car.y - other.y < safeGap) shouldStop = true;
+                }
+
+                // Adjust speed based on stop condition
+                if (shouldStop) {
+                    car.currentSpeed = Math.max(0, car.currentSpeed - 0.2);
+                    car.stoppedFrames++;
+                } else {
+                    car.currentSpeed = Math.min(car.baseSpeed, car.currentSpeed + 0.15);
+                    if (car.stoppedFrames > 0) car.stoppedFrames--;
+                }
+
+                // Update physical coordinates
+                if (car.dir === 0) car.x += car.currentSpeed;
+                if (car.dir === 1) car.x -= car.currentSpeed;
+                if (car.dir === 2) car.y += car.currentSpeed;
+                if (car.dir === 3) car.y -= car.currentSpeed;
+
+                totalSpeed += car.currentSpeed;
+                totalStoppedFrames += car.stoppedFrames;
+
+                // Render Car Shape on Canvas
+                ctx.fillStyle = car.color;
+                ctx.beginPath();
+                ctx.roundRect(car.x, car.y, car.width, car.height, 3);
+                ctx.fill();
+
+                // Emergency Vehicle Flashing Siren Lights
+                if (car.isEmergency) {
+                    ctx.fillStyle = (Math.floor(Date.now() / 150) % 2 === 0) ? '#3b82f6' : '#ef4444';
+                    ctx.beginPath();
+                    ctx.arc(car.x + car.width/2, car.y + car.height/2, 3, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+
+                // Despawn cars off screen bounds
+                if (car.x > w + 60 || car.x < -60 || car.y > h + 60 || car.y < -60) {
+                    heroCars.splice(i, 1);
+                }
+            }
+
+            const avgSpeedKm = activeCarCount > 0 ? Math.round((totalSpeed / activeCarCount) * 14) : 0;
+            const avgWaitSec = activeCarCount > 0 ? Math.round((totalStoppedFrames / activeCarCount) / 8) : 0;
+            const maxQueueCount = Math.max(horizQueue, vertQueue);
+
+            document.getElementById('canvasSpeedMetric').innerText = `${avgSpeedKm} km/h`;
+            document.getElementById('canvasWaitMetric').innerText = `${avgWaitSec} sec`;
+            document.getElementById('canvasQueueMetric').innerText = `${maxQueueCount} cars`;
+            
+            const flowMetric = document.getElementById('canvasFlowMetric');
+            if (isHeroAiOn) {
+                flowMetric.innerText = "AI Optimized";
+                flowMetric.className = "block font-bold text-xs sm:text-sm text-emerald-400";
+            } else {
+                flowMetric.innerText = maxQueueCount > 4 ? "Heavy Gridlock" : "Fixed Timed";
+                flowMetric.className = maxQueueCount > 4 ? "block font-bold text-xs sm:text-sm text-rose-400 animate-pulse" : "block font-bold text-xs sm:text-sm text-amber-400";
+            }
+
+            requestAnimationFrame(renderHeroCanvas);
+        }
+
+        function updateSimulator() {
+            const trafficVal = parseInt(document.getElementById('sliderTraffic').value);
+            const energyVal = parseInt(document.getElementById('sliderEnergy').value);
+            const wasteVal = parseInt(document.getElementById('sliderWaste').value);
+
+            document.getElementById('valTraffic').innerText = trafficVal + '%';
+            document.getElementById('valEnergy').innerText = energyVal + '%';
+            document.getElementById('valWaste').innerText = wasteVal + '%';
+
+            // Calculated Metrics
+            const savedMins = Math.round((trafficVal * 0.4) + (energyVal * 0.1));
+            const trafficReduction = Math.round(trafficVal * 0.55);
+            const powerSavedKwh = Math.round((energyVal * 2500) + (trafficVal * 500));
+
+            document.getElementById('metricSavedTime').innerText = savedMins + ' mins/day';
+            document.getElementById('metricTrafficRed').innerText = '-' + trafficReduction + '%';
+            document.getElementById('metricPowerSaved').innerText = (powerSavedKwh / 1000).toFixed(0) + 'k kWh';
+
+            // Dynamic Recommendation Text
+            const recBox = document.getElementById('simRecommendation');
+            if (trafficVal < 40) {
+                recBox.innerText = "💡 Low Traffic Light Coverage: EDSA gridlock remains high. Try increasing traffic light coverage above 60%!";
+            } else if (energyVal < 30) {
+                recBox.innerText = "⚡ Energy Savings Alert: Increasing the Smart Streetlight Network will drastically cut municipal power bills.";
+            } else if (trafficVal >= 70 && energyVal >= 60) {
+                recBox.innerText = "🌟 Optimal Deployment: Metro Manila traffic delays drop by over 30 mins/day and city power consumption drops by 40%!";
+            } else {
+                recBox.innerText = "Balanced Strategy: Balanced deployment across signals and streetlights yields steady urban improvements.";
+            }
+
+            renderSimChart(trafficVal);
+        }
+
+        // Render Simulator Chart Canvas
+        const simCanvas = document.getElementById('simChartCanvas');
+        const simCtx = simCanvas ? simCanvas.getContext('2d') : null;
+
+        function renderSimChart(trafficPercentage = 60) {
+            if (!simCanvas) return;
+            simCanvas.width = simCanvas.parentElement.clientWidth;
+            simCanvas.height = simCanvas.parentElement.clientHeight;
+
+            const w = simCanvas.width;
+            const h = simCanvas.height;
+
+            simCtx.clearRect(0, 0, w, h);
+
+            // Draw grid lines
+            simCtx.strokeStyle = '#1e293b';
+            simCtx.lineWidth = 1;
+            for (let y = 20; y < h; y += 30) {
+                simCtx.beginPath();
+                simCtx.moveTo(0, y);
+                simCtx.lineTo(w, y);
+                simCtx.stroke();
+            }
+
+            // Draw Old Traffic Line (High Congestion - Red)
+            simCtx.strokeStyle = '#ef4444';
+            simCtx.lineWidth = 3;
+            simCtx.beginPath();
+            simCtx.moveTo(20, 30);
+            simCtx.bezierCurveTo(w * 0.3, 20, w * 0.6, 40, w - 20, 25);
+            simCtx.stroke();
+
+            // Draw AI Traffic Line (Lower Congestion - Emerald)
+            const aiYOffset = (trafficPercentage / 100) * (h - 70);
+            simCtx.strokeStyle = '#10b981';
+            simCtx.lineWidth = 3;
+            simCtx.beginPath();
+            simCtx.moveTo(20, h - 30);
+            simCtx.bezierCurveTo(w * 0.3, h - 30 - (aiYOffset * 0.5), w * 0.6, h - 25 - aiYOffset, w - 20, h - 35 - aiYOffset);
+            simCtx.stroke();
+        }
+
+        function checkAnswer(qNum, isCorrect, btnElement) {
+            if (answeredQuestions[qNum]) return;
+            answeredQuestions[qNum] = true;
+
+            const parentBox = document.getElementById(`q${qNum}Box`);
+            const allBtns = parentBox.querySelectorAll('.q-btn');
+
+            allBtns.forEach(b => {
+                b.classList.add('opacity-50', 'cursor-not-allowed');
+                b.disabled = true;
+            });
+
+            if (isCorrect) {
+                btnElement.classList.remove('opacity-50', 'border-slate-200');
+                btnElement.classList.add('bg-emerald-100', 'border-emerald-500', 'text-emerald-900', 'font-bold');
+                quizScoreCount++;
+            } else {
+                btnElement.classList.remove('opacity-50', 'border-slate-200');
+                btnElement.classList.add('bg-rose-100', 'border-rose-500', 'text-rose-900');
+            }
+
+            document.getElementById('quizScore').innerText = `Score: ${quizScoreCount} / 3`;
+        }
+
+        function resetQuiz() {
+            quizScoreCount = 0;
+            answeredQuestions = { 1: false, 2: false, 3: false };
+            document.getElementById('quizScore').innerText = 'Score: 0 / 3';
+
+            document.querySelectorAll('.q-btn').forEach(b => {
+                b.className = 'q-btn p-3 rounded-xl border border-slate-200 text-left hover:bg-slate-50 transition-all';
+                b.disabled = false;
+            });
+        }
+
+        window.onload = function() {
+            renderHeroCanvas();
+            updateSimulator();
+        };
+    </script>
 </body>
 </html>
