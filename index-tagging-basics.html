@@ -1,136 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CS30-8P: Adaptive Traffic Control for Metro Manila</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smarter Streets: Manila Digital Resource</title>
 </head>
 <body>
 
-    <!-- HEADER: Contains the main title and site navigation -->
-    <header>
-        <<h1>Adaptive Traffic Control and Smart Energy Infrastructure for Metro Manila</h1>
-        <p>This technical report examines a lower-cost, privacy-preserving alternative to road expansion for Local Government Units (LGUs) in Metro Manila. As severe traffic congestion continues to cause massive economic and productivity losses across the region, expanding physical roads faces hard limits due to high land costs and urban density[cite: 3]. This study evaluates the integration of camera-based adaptive traffic signal control, smart LED streetlamps, solar battery backups, and local edge computing to optimize existing infrastructure while maintaining strict compliance with the Data Privacy Act of 2012[cite: 3].</p>
-        <nav>
-            <strong>Navigation Links:</strong>
-            <a href="#abstract">Abstract</a> | 
-            <a href="#problem">1. Problem</a> | 
-            <a href="#solution">2. Solution</a> | 
-            <a href="#energy">3. Energy</a> | 
-            <a href="#privacy">4. Privacy</a> | 
-            <a href="#implementation">5. Implementation</a> | 
-            <a href="#limitations">6. Limitations</a> | 
-            <a href="#reflection">Reflection</a>
-        </nav>
-    </header>
+<header>
+  <h1>MAKING METRO MANILA'S STREETS SMARTER & SMOOTHER</h1>
+  <p>This article was prepared for <i>CS30-8P Websites and Online Communication</i> for <strong>Mapúa University</strong> students of <strong>BS Technical Communication</strong>.</p>
+</header>
 
-    <hr> <!-- Horizontal rule used to separate thematic content sections -->
+<hr>
 
-    <!-- MAIN: Houses the unique, primary content of the document -->
-    <main>
+<main>
 
-        <!-- SECTION: Abstract -->
-        <section id="abstract">
-            <h2>Executive Abstract</h2>
-            <p>Metro Manila's traffic congestion imposes heavy economic, environmental, and social costs[cite: 4]. The traditional remedy of building more road capacity is expensive and severely limited by scarce urban land[cite: 4]. This paper examines a lower-cost alternative for local government units (LGUs): <strong>camera-based adaptive traffic signal control</strong>, energy-efficient <strong>smart streetlights with solar battery backup</strong>, and <strong>edge-computing systems</strong> that protect privacy[cite: 4].</p>
-            <p>We argue that the largest operational gains come from using <em>existing infrastructure more intelligently</em> rather than constructing new roads[cite: 4]. <mark>Draft Note:</mark> <del>Initial proposals focused only on road widening</del>, but <ins>current frameworks prioritize data-driven urban management</ins>.</p>
-        </section>
+<section>
+  <h2>THE DAILY PROBLEM</h2>
+  <p>Metro Manila drivers waste over 100 hours every year in traffic jams. Traditional fixed-timer traffic lights do not adapt to real-time conditions, leading to severe inefficiency and frustration.</p>
+</section>
 
-        <!-- SECTION 1: Problem -->
-        <section id="problem">
-            <h2>1. The Problem: Static Signal Cycles</h2>
-            <p>Most signalized intersections in Metro Manila operate on fixed timers based on outdated average traffic counts[cite: 4]. Under this arrangement, a green phase lasts the same duration whether three vehicles or fifty are waiting[cite: 4].</p>
-            <p>This causes two primary failure modes:</p>
-            <ul>
-                <li><b>Wasted Green Time:</b> Empty approaches receive green light allocation while competing approaches build long queues[cite: 4].</li>
-                <li><b>Spillback Congestion:</b> Overflown queues spill back into upstream intersections, locking cross traffic and turning a local bottleneck into network-wide gridlock[cite: 4].</li>
-            </ul>
-            <p>Key corridors such as <i>EDSA</i>, <i>Taft Avenue</i>, and <i>España Boulevard</i> are particularly vulnerable during rainstorms or vehicle stalls, where fixed timers fail to adapt to real-time road conditions[cite: 4]. The core issue is not merely a shortage of road space, but a <strong>shortage of real-time information</strong>[cite: 4].</p>
-        </section>
+<section>
+  <h2>CORE PILLARS OF SMART TECH</h2>
+  <p>To address these issues, several technological updates can transform major avenues:</p>
+  <ul>
+    <li><strong>Smart Traffic Signals:</strong> Adapting green lights based on live car queues instead of fixed timers.</li>
+    <li><strong>Smart Power Grids & Streetlights:</strong> Dimming streetlamps when streets are clear to lower energy bills.</li>
+    <li><strong>Smart Garbage Collection:</strong> Bins with fill-level sensors that only alert trucks when full.</li>
+  </ul>
+</section>
 
-        <!-- SECTION 2: Solution -->
-        <section id="solution">
-            <h2>2. Proposed Solution: Adaptive Traffic Control</h2>
-            <p>Optical cameras mounted on existing traffic poles observe vehicle volume without require expensive, damage-prone pavement work like traditional inductive loops[cite: 4]. Small processing units analyze video frames directly at the intersection to dynamically optimize signals[cite: 4].</p>
-            
-            <h3>Core Control Mechanics</h3>
-            <ol>
-                <li><b>Sensing:</b> Cameras measure vehicle count, lane occupancy, and queue lengths in real time[cite: 4].</li>
-                <li><b>Dynamic Timing:</b> Signal controllers extend green time for congested lanes and reduce time for empty approaches[cite: 4].</li>
-                <li><b>Corridor Coordination:</b> Adjacent intersections share data to let platoons of vehicles clear multiple green lights without stopping[cite: 4].</li>
-                <li><b>Fail-Safe Safety:</b> If camera feeds fail, controllers instantly fall back to standard fixed-time safety cycles[cite: 4].</li>
-            </ol>
-            <p>Simulation models project a <b>25% to 35% reduction</b> in average commute wait times under optimized adaptive flow[cite: 4].</p>
-        </section>
+<section>
+  <h2>IMPLEMENTATION STEPS</h2>
+  <p>Deploying these solutions requires a practical, phased approach across local neighborhoods:</p>
+  <ol>
+    <li>Install low-cost camera sensors to tally cars per lane in real time.</li>
+    <li>Implement auto-dimming streetlights that operate at 30% brightness late at night.</li>
+    <li>Deploy ultrasonic level sensors to track how full trash bins are before dispatching trucks.</li>
+  </ol>
+</section>
 
-        <!-- SECTION 3: Energy Efficiency -->
-        <section id="energy">
-            <h2>3. Energy Efficiency & Grid Resilience</h2>
-            <p>Electricity costs represent a major recurring expense for municipal governments[cite: 4]. Integrating smart infrastructure yields immediate utility savings:</p>
-            <ul>
-                <li><em>Smart LED Streetlamps:</em> Equipped with ambient light and motion sensors, lamps dim during low-traffic hours (11:00 PM to 4:00 AM) and brighten automatically when vehicles or pedestrians approach[cite: 4].</li>
-                <li><em>Solar Battery Backup:</em> Low-power LED signals paired with solar power remain operational during grid outages and typhoons, preventing severe gridlock when the central power grid fails[cite: 4].</li>
-            </ul>
-        </section>
+<section>
+  <h2>KEY DEFINITIONS</h2>
+  <dl>
+    <dt>Optical Sensors</dt>
+    <dd>Devices used in smart traffic signals that tally cars per lane in real time to create green waves.</dd>
+    <dt>Auto-Dimming</dt>
+    <dd>A feature where streetlights operate at reduced brightness and brighten only when cars or pedestrians approach.</dd>
+    <dt>Edge Processing</dt>
+    <dd>A privacy-first design where images are converted into simple numbers inside the camera itself, without storing raw video.</dd>
+  </dl>
+</section>
 
-        <!-- SECTION 4: Data Privacy -->
-        <section id="privacy">
-            <h2>4. Addressing Data Privacy Concerns</h2>
-            <p>Public camera deployments naturally raise surveillance concerns[cite: 4]. To address this, the system uses <strong>data minimization through edge computing</strong>[cite: 4].</p>
-            <p>Video processing occurs locally on the camera hardware itself[cite: 4]. Only anonymized, numerical data (e.g., <mark>"14 vehicles in Lane A"</mark>) leaves the unit[cite: 4]. No facial recognition, license plate tracking, or raw video streams are transmitted or saved, strictly adhering to <i>Republic Act No. 10173 (Data Privacy Act of 2012)</i>[cite: 4].</p>
-        </section>
+<section>
+  <h2>IMPACT & PRIVACY</h2>
+  <p>A major concern with smart cameras is data privacy. However, modern systems process data locally, ensuring no faces or license plates are recorded and maintaining strict compliance with the Philippine Data Privacy Act of 2012.</p>
+  <blockquote>
+    "Up to 30% reduction in daily travel delays, 40% street energy savings through auto-dimming lights, and cleaner air across local neighborhoods."
+  </blockquote>
+  <p>Visit the official portal to review objectives for <a href="https://mapua.edu.ph" target="_blank">Mapúa students of BS Technical Communication</a>.</p>
+</section>
 
-        <!-- SECTION 5: Implementation & Terminology -->
-        <section id="implementation">
-            <h2>5. Implementation Strategy & Governance</h2>
-            <p>Deploying smart infrastructure requires a phased approach to manage technical and financial risk[cite: 4]:</p>
-            <ol>
-                <li><b>Pilot Phase:</b> Test sensors across a small cluster of high-congestion intersections to collect baseline travel times[cite: 4].</li>
-                <li><b>Corridor Phase:</b> Expand along an entire major artery to coordinate signals across neighboring intersections[cite: 4].</li>
-                <li><b>Scaling Phase:</b> Integrate smart streetlighting, solar backups, and cross-agency data sharing city-wide[cite: 4].</li>
-            </ol>
+</main>
 
-            <h3>Key Technical Terms</h3>
-            <dl>
-                <dt>Edge Computing</dt>
-                <dd>Processing sensor data locally on the hardware device rather than transmitting raw files to central cloud servers[cite: 4].</dd>
-                <dt>RA 10173</dt>
-                <dd>The Data Privacy Act of 2012, safeguarding personal information in information and communications systems[cite: 4].</dd>
-                <dt>MMDA & LGUs</dt>
-                <dd>The Metropolitan Manila Development Authority and Local Government Units responsible for regional transport governance[cite: 4].</dd>
-            </dl>
-        </section>
+<hr>
 
-        <!-- SECTION 6: Limitations -->
-        <section id="limitations">
-            <h2>6. System Limitations</h2>
-            <p>While promising, camera-based adaptive control is not a standalone solution[cite: 4]. Optical sensors can be affected by heavy monsoon rain, lens dirt, and night glare[cite: 4]. Furthermore, Metro Manila's mixed traffic flow—comprising jeepneys, motorcycles, tricycles, and pedestrians—requires specialized AI model training[cite: 4]. Signal optimization must be combined with improved public transit, parking enforcement, and pedestrian infrastructure[cite: 4].</p>
-        </section>
-
-        <!-- SECTION: Course Reflection & Resources -->
-        <section id="reflection">
-            <h2>CS30-8P Reflection & Media</h2>
-            
-            <h3>Project Reflection</h3>
-            <blockquote>
-                "Technical solutions are only useful if the people who make and are affected by decisions can understand them[cite: 4]. Technology should not be intimidating—it should empower citizens and local leaders to make informed choices for a smoother, cleaner Metro Manila[cite: 4]."
-            </blockquote>
-
-            <h3>Technical Communication Resources</h3>
-            <p>Learn more about urban transit policies at the official <a href="https://mmda.gov.ph" target="_blank">MMDA Portal</a> or review course objectives for Mapua students of BS Technical Communication.</p>
-
-            <!-- Sample Image Element required by CS30 guidelines -->
-            <img src="https://via.placeholder.com/600x200?text=Smart+Traffic+Light+Diagram" alt="Diagram showing edge computing camera linked to adaptive traffic signal" width="600" height="200">
-        </section>
-
-    </main>
-
-    <hr>
-
-    <!-- FOOTER: Copyright info -->
-    <footer>
-        <p>&copy; 2026 Mapua University. CS30-8P Coursework Resource.</p>
-    </footer>
+<footer>
+  <p><strong>By Jullieanne Macario for CS30-8P</strong></p>
+  <p>&copy; 2026 Mapúa University. CS30-8P Coursework Resource.</p>
+</footer>
 
 </body>
 </html>
