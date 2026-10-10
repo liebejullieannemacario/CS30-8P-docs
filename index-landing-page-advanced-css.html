@@ -1,0 +1,857 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Smart traffic signals, energy infrastructure, and IoT solutions for Metro Manila.">
+  <title>Smarter Streets Manila — Seatwork 3</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text-dark: #0f172a;
+      --text-muted: #475569;
+      --emerald: #047857;
+      --emerald-light: #ecfdf5;
+      --cyan: #0369a1;
+      --border: #cbd5e1;
+      --shadow: 0 4px 20px rgba(15, 23, 42, 0.07);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text-dark);
+      line-height: 1.7;
+    }
+
+    a {
+      overflow-wrap: anywhere;
+    }
+
+    a:focus-visible {
+      outline: 3px solid #b45309;
+      outline-offset: 4px;
+      border-radius: 4px;
+    }
+
+    a:hover {
+      text-decoration-thickness: 3px;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 12px;
+      z-index: 1000;
+      background: #ffffff;
+      color: #0f172a;
+      padding: 12px 16px;
+      border: 2px solid #047857;
+    }
+
+    .skip-link:focus {
+      top: 12px;
+    }
+
+    /* HEADER AND NAVIGATION */
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .nav-container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--text-dark);
+      text-decoration: none;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      flex-shrink: 0;
+      background: var(--emerald);
+      border-radius: 50%;
+    }
+
+    .nav-menu {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      list-style: none;
+    }
+
+    .nav-menu a {
+      color: var(--text-dark);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .nav-menu a:hover {
+      color: var(--emerald);
+      text-decoration: underline;
+    }
+
+    .btn-nav {
+      display: inline-block;
+      background: var(--text-dark);
+      color: #ffffff;
+      padding: 9px 18px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-decoration: none;
+      text-align: center;
+    }
+
+    .btn-nav:hover,
+    .btn-nav:focus-visible {
+      background: #334155;
+      color: #ffffff;
+    }
+
+    /* HERO: TWO COLUMNS ON DESKTOP */
+    .hero-section {
+      max-width: 1140px;
+      margin: 48px auto;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+      gap: 40px;
+      align-items: center;
+    }
+
+    .tag-badge {
+      display: inline-block;
+      background: var(--emerald-light);
+      color: #065f46;
+      border: 1px solid #6ee7b7;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .hero-title span {
+      color: var(--emerald);
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      display: inline-block;
+      padding: 12px 20px;
+      border-radius: 9px;
+      font-weight: 700;
+      text-decoration: none;
+      text-align: center;
+    }
+
+    .btn-primary {
+      background: var(--emerald);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background: #065f46;
+      color: #ffffff;
+    }
+
+    .btn-secondary {
+      background: #ffffff;
+      color: var(--text-dark);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      background: #e2e8f0;
+      color: var(--text-dark);
+    }
+
+    /* DASHBOARD CARD */
+    .hero-card {
+      min-width: 0;
+      background: var(--text-dark);
+      color: #ffffff;
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .hero-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #475569;
+    }
+
+    .status-indicator {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      color: #6ee7b7;
+      font-weight: 700;
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      flex-shrink: 0;
+      background: #6ee7b7;
+      border-radius: 50%;
+    }
+
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .stat-box {
+      min-width: 0;
+      background: #1e293b;
+      padding: 18px;
+      border-radius: 10px;
+      border: 1px solid #475569;
+    }
+
+    .stat-number {
+      font-size: clamp(1.4rem, 3vw, 1.8rem);
+      font-weight: 800;
+      color: #7dd3fc;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: #cbd5e1;
+      margin-top: 4px;
+    }
+
+    /* MAIN CONTENT */
+    .main-container {
+      max-width: 1140px;
+      margin: 64px auto;
+      padding: 0 24px;
+    }
+
+    .content-section {
+      margin-bottom: 56px;
+      scroll-margin-top: 100px;
+    }
+
+    .section-header {
+      margin-bottom: 28px;
+    }
+
+    .section-title {
+      font-size: clamp(1.5rem, 3vw, 1.9rem);
+      font-weight: 800;
+      line-height: 1.3;
+    }
+
+    .section-subtitle {
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    /* MULTI-COLUMN TECHNOLOGY CARDS */
+    .grid-cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .info-card {
+      min-width: 0;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-top: 4px solid var(--emerald);
+      border-radius: 14px;
+      padding: 26px;
+      box-shadow: var(--shadow);
+    }
+
+    .info-card:nth-child(2) {
+      border-top-color: var(--cyan);
+    }
+
+    .info-card:nth-child(3) {
+      border-top-color: #b45309;
+    }
+
+    .info-card h3 {
+      font-size: 1.15rem;
+      line-height: 1.4;
+      margin-bottom: 12px;
+    }
+
+    .info-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .info-card:hover {
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+    }
+
+    /* IMPLEMENTATION STEPS */
+    .process-section {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 36px;
+      margin-bottom: 56px;
+      box-shadow: var(--shadow);
+      scroll-margin-top: 100px;
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 28px;
+      margin-top: 28px;
+    }
+
+    .step-item {
+      min-width: 0;
+    }
+
+    .step-num {
+      width: 38px;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      background: var(--emerald-light);
+      color: #065f46;
+      font-weight: 800;
+    }
+
+    .step-item h3 {
+      font-size: 1.05rem;
+      margin-bottom: 8px;
+    }
+
+    .step-item p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+    }
+
+    /* QUOTATION */
+    .quote-card {
+      background: linear-gradient(135deg, #064e3b, #0f172a);
+      color: #ffffff;
+      border-radius: 16px;
+      padding: 40px;
+      margin-bottom: 56px;
+      box-shadow: var(--shadow);
+    }
+
+    .quote-card blockquote {
+      font-size: 1.2rem;
+      font-weight: 600;
+      line-height: 1.7;
+      border-left: 4px solid #6ee7b7;
+      padding-left: 20px;
+    }
+
+    .quote-card p {
+      color: #e2e8f0;
+      font-size: 0.9rem;
+      margin: 18px 0 0 24px;
+    }
+
+    /* MULTI-COLUMN DEFINITIONS */
+    .def-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .def-box {
+      min-width: 0;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+
+    .def-box dt {
+      color: #075985;
+      font-size: 1.05rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .def-box dd {
+      color: var(--text-muted);
+      font-size: 0.93rem;
+    }
+
+    /* PRIVACY AND CONCLUSION */
+    .text-panel {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px;
+      margin-bottom: 24px;
+    }
+
+    .text-panel h2 {
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+    }
+
+    .text-panel p {
+      color: var(--text-muted);
+    }
+
+    .text-panel a {
+      color: #075985;
+      font-weight: 700;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #ffffff;
+      border-top: 1px solid var(--border);
+      padding: 32px 24px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    footer p + p {
+      margin-top: 6px;
+    }
+
+    footer strong {
+      color: var(--text-dark);
+    }
+
+    /* TABLET */
+    @media (max-width: 900px) {
+      .nav-container {
+        flex-wrap: wrap;
+      }
+
+      .hero-section {
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+      }
+
+      .grid-cards,
+      .process-grid,
+      .def-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    /* MOBILE */
+    @media (max-width: 650px) {
+      html {
+        scroll-padding-top: 20px;
+      }
+
+      header {
+        position: static;
+      }
+
+      .nav-container {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 18px;
+      }
+
+      .brand-logo {
+        justify-content: center;
+      }
+
+      .nav-menu {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .nav-menu a {
+        display: block;
+        padding: 6px 0;
+      }
+
+      .btn-nav {
+        width: 100%;
+      }
+
+      .hero-section {
+        grid-template-columns: 1fr;
+        margin: 32px auto;
+        padding: 0 18px;
+      }
+
+      .hero-title {
+        font-size: 2rem;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .hero-actions a {
+        width: 100%;
+      }
+
+      .main-container {
+        margin: 40px auto;
+        padding: 0 18px;
+      }
+
+      .grid-cards,
+      .process-grid,
+      .def-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .process-section,
+      .quote-card {
+        padding: 24px 18px;
+      }
+
+      .info-card,
+      .def-box,
+      .text-panel {
+        padding: 22px 18px;
+      }
+
+      .stat-row {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    /* SMALL PHONES */
+    @media (max-width: 360px) {
+      .stat-row {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card {
+        padding: 18px;
+      }
+    }
+
+    /* RESPECT REDUCED-MOTION PREFERENCES */
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- HEADER AND NAVIGATION -->
+  <header>
+    <nav class="nav-container" aria-label="Main navigation">
+      <a href="#overview" class="brand-logo">
+        <span class="dot" aria-hidden="true"></span>
+        <span>Smarter Streets Manila</span>
+      </a>
+
+      <ul class="nav-menu">
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#pillars">Core Tech</a></li>
+        <li><a href="#process">Deployment</a></li>
+        <li><a href="#definitions">Definitions</a></li>
+        <li><a href="#privacy">Privacy</a></li>
+      </ul>
+
+      <a
+        href="https://mapua.edu.ph"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn-nav"
+      >Mapúa Portal</a>
+    </nav>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero-section" id="overview" aria-labelledby="hero-heading">
+    <div>
+      <span class="tag-badge">CS30-8P Web Resource</span>
+
+      <h1 class="hero-title" id="hero-heading">
+        Making Metro Manila's Streets
+        <span>Smarter &amp; Smoother</span>
+      </h1>
+
+      <p class="hero-desc">
+        A technical exploration of how optical sensors, real-time signal
+        timing, and auto-dimming LED grids optimize traffic flow across
+        metropolitan Manila.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#pillars" class="btn-primary">Explore Solutions</a>
+        <a href="#process" class="btn-secondary">View Deployment Steps</a>
+      </div>
+    </div>
+
+    <!-- DASHBOARD PANEL -->
+    <aside class="hero-card" aria-label="Illustrative intersection telemetry">
+      <div class="hero-card-header">
+        <span><strong>Intersection Telemetry</strong></span>
+        <div class="status-indicator">
+          <span class="pulse-dot" aria-hidden="true"></span>
+          <span>Adaptive AI Active</span>
+        </div>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-box">
+          <div class="stat-number">-30%</div>
+          <div class="stat-label">Commute Delay</div>
+        </div>
+
+        <div class="stat-box">
+          <div class="stat-number">40%</div>
+          <div class="stat-label">Power Savings</div>
+        </div>
+      </div>
+
+      <p style="margin-top: 16px; color: #cbd5e1; font-size: 0.8rem;">
+        Illustrative figures from the original landing-page content, not a
+        live monitoring feed.
+      </p>
+    </aside>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-container" id="main-content">
+
+    <!-- CORE TECHNOLOGY -->
+    <section class="content-section" id="pillars" aria-labelledby="pillars-heading">
+      <div class="section-header">
+        <h2 class="section-title" id="pillars-heading">Core Smart Pillars</h2>
+        <p class="section-subtitle">
+          Integrated IoT technologies designed for dense urban corridors
+        </p>
+      </div>
+
+      <div class="grid-cards">
+        <article class="info-card">
+          <h3>Smart Traffic Signals</h3>
+          <p>
+            Replaces static timer cycles with dynamic green lights scaled
+            directly to live vehicle queue calculations at intersections.
+          </p>
+        </article>
+
+        <article class="info-card">
+          <h3>Smart Power Grids</h3>
+          <p>
+            Streetlamps automatically adjust output during low-traffic night
+            hours while solar battery backups guard against power grid outages.
+          </p>
+        </article>
+
+        <article class="info-card">
+          <h3>Smart Garbage Bins</h3>
+          <p>
+            Ultrasonic fill-level sensors notify waste management trucks only
+            when bins reach capacity, preventing overflow into drainage grates.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- IMPLEMENTATION PROCESS -->
+    <section class="process-section" id="process" aria-labelledby="process-heading">
+      <div class="section-header">
+        <h2 class="section-title" id="process-heading">Implementation Process</h2>
+        <p class="section-subtitle">
+          Systematic rollout strategy for municipal adoption
+        </p>
+      </div>
+
+      <div class="process-grid">
+        <article class="step-item">
+          <div class="step-num" aria-hidden="true">01</div>
+          <h3>Sensor Deployment</h3>
+          <p>
+            Optical camera units are mounted at key intersection approaches
+            to calculate live vehicle queue counts.
+          </p>
+        </article>
+
+        <article class="step-item">
+          <div class="step-num" aria-hidden="true">02</div>
+          <h3>Signal Synchronization</h3>
+          <p>
+            Adaptive controllers link consecutive traffic lights to establish
+            continuous green waves along high-density avenues.
+          </p>
+        </article>
+
+        <article class="step-item">
+          <div class="step-num" aria-hidden="true">03</div>
+          <h3>Edge Privacy Safeguards</h3>
+          <p>
+            Images are processed locally inside device memory to ensure no
+            facial or license plate data is saved or transmitted.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- PROJECT IMPACT QUOTE -->
+    <section class="quote-card" aria-label="Project impact quotation">
+      <blockquote>
+        "Implementing adaptive signal timing and automated power grids
+        provides a cost-effective, scalable route toward reducing urban
+        gridlock and municipal electric bills."
+      </blockquote>
+      <p>— CS30 Urban Systems Research Paper Summary</p>
+    </section>
+
+    <!-- DEFINITIONS -->
+    <section class="content-section" id="definitions" aria-labelledby="definitions-heading">
+      <div class="section-header">
+        <h2 class="section-title" id="definitions-heading">Key Terminology</h2>
+        <p class="section-subtitle">
+          Essential technical terms behind smart city infrastructure
+        </p>
+      </div>
+
+      <dl class="def-grid">
+        <div class="def-box">
+          <dt>Optical Sensors</dt>
+          <dd>
+            Camera units placed at intersection stoplines that measure queue
+            density in real time to adjust light timings.
+          </dd>
+        </div>
+
+        <div class="def-box">
+          <dt>Auto-Dimming</dt>
+          <dd>
+            An automated streetlighting feature that lowers power output
+            during off-peak hours and brightens upon vehicle detection.
+          </dd>
+        </div>
+
+        <div class="def-box">
+          <dt>Edge Processing</dt>
+          <dd>
+            Local data processing within the camera unit itself, converting
+            video to numerical counts while discarding raw footage.
+          </dd>
+        </div>
+      </dl>
+    </section>
+
+    <!-- PRIVACY -->
+    <section class="text-panel" id="privacy" aria-labelledby="privacy-heading">
+      <h2 id="privacy-heading">Privacy-First Infrastructure</h2>
+      <p>
+        Edge processing converts video feeds into anonymized data counts
+        locally. The proposed design aims to avoid storing raw video and
+        to safeguard citizen privacy. Actual deployments should be reviewed
+        for compliance with the Philippine Data Privacy Act of 2012.
+      </p>
+    </section>
+
+    <!-- CONCLUSION -->
+    <section class="text-panel" id="conclusion" aria-labelledby="conclusion-heading">
+      <h2 id="conclusion-heading">Conclusion</h2>
+      <p>
+        Smart urban infrastructure offers a potential way to improve traffic
+        flow, energy efficiency, and municipal services. Careful testing,
+        privacy safeguards, and accessible public communication are important
+        parts of implementation.
+      </p>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>
+      Prepared by <strong>Liebe Jullieanne Macario</strong> for CS30-8P
+      Websites and Online Communication
+    </p>
+    <p>&copy; 2026 Mapúa University. Academic Coursework Resource.</p>
+  </footer>
+
+</body>
+</html>
